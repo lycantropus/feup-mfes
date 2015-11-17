@@ -1,0 +1,72 @@
+\begin{vdmpp}[breaklines=true]
+class Stack
+types
+-- TODO Define types here
+values
+-- TODO Define values here
+instance variables
+                private contents : seq of int := [];
+                private capacity:  nat;
+                inv len contents <= capacity;
+                
+(*@
+\label{Stack:11}
+@*)
+operations
+                public Stack: nat ==> Stack
+                Stack(c) == (capacity := c; return self)
+(*@
+\label{clear:14}
+@*)
+                post contents = [] and capacity = c;
+                public clear: () ==> ()
+(*@
+\label{push:16}
+@*)
+                clear() == contents := [];
+                public push: int ==> ()
+                push(x) == contents := [x] ^ contents
+                pre len contents < capacity
+(*@
+\label{pop:20}
+@*)
+                post contents = [x] ^ contents~;
+                public pop: () ==> ()
+                pop() == contents := tl contents
+                pre contents <> []
+(*@
+\label{top:24}
+@*)
+                post contents = tl contents~;
+                public top: () ==> int
+                top() == return hd contents
+                pre contents <> []
+                post RESULT = hd contents;
+                
+functions
+-- TODO Define functiones here
+traces
+-- TODO Define Combinatorial Test Traces here
+end Stack
+\end{vdmpp}
+\bigskip
+\begin{longtable}{|l|r|r|r|}
+\hline
+Function or operation & Line & Coverage & Calls \\
+\hline
+\hline
+\hyperref[Stack:11]{Stack} & 11&0.0\% & 0 \\
+\hline
+\hyperref[clear:14]{clear} & 14&0.0\% & 0 \\
+\hline
+\hyperref[pop:20]{pop} & 20&0.0\% & 0 \\
+\hline
+\hyperref[push:16]{push} & 16&0.0\% & 0 \\
+\hline
+\hyperref[top:24]{top} & 24&0.0\% & 0 \\
+\hline
+\hline
+Stack.vdmpp & & 0.0\% & 0 \\
+\hline
+\end{longtable}
+

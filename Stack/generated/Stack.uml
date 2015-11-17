@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_rVPBYI0iEeWYzZFrpxWbYQ" name="Stack">
+  <packagedElement xmi:type="uml:Class" xmi:id="_rVPBYY0iEeWYzZFrpxWbYQ" name="Stack" visibility="public">
+    <ownedAttribute xmi:id="_rVPBYo0iEeWYzZFrpxWbYQ" name="contents" visibility="private" type="_rVPBhI0iEeWYzZFrpxWbYQ">
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_rVPBY40iEeWYzZFrpxWbYQ" value="[]"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_rVPBZI0iEeWYzZFrpxWbYQ" name="capacity" visibility="private" type="_rVPBiY0iEeWYzZFrpxWbYQ">
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_rVPBZY0iEeWYzZFrpxWbYQ" value="(undefined)"/>
+    </ownedAttribute>
+    <ownedOperation xmi:id="_rVPBZo0iEeWYzZFrpxWbYQ" name="Stack" visibility="public">
+      <ownedParameter xmi:id="_rVPBZ40iEeWYzZFrpxWbYQ" name="c" type="_rVPBiY0iEeWYzZFrpxWbYQ"/>
+      <ownedParameter xmi:id="_rVPBaI0iEeWYzZFrpxWbYQ" type="_rVPBYY0iEeWYzZFrpxWbYQ" direction="return"/>
+    </ownedOperation>
+    <ownedOperation xmi:id="_rVPBaY0iEeWYzZFrpxWbYQ" name="clear" visibility="public">
+      <ownedParameter xmi:id="_rVPBao0iEeWYzZFrpxWbYQ" type="_rVPBio0iEeWYzZFrpxWbYQ" direction="return"/>
+    </ownedOperation>
+    <ownedOperation xmi:id="_rVPBa40iEeWYzZFrpxWbYQ" name="push" visibility="public">
+      <ownedParameter xmi:id="_rVPBbI0iEeWYzZFrpxWbYQ" name="x" type="_rVPBiI0iEeWYzZFrpxWbYQ"/>
+      <ownedParameter xmi:id="_rVPBbY0iEeWYzZFrpxWbYQ" type="_rVPBio0iEeWYzZFrpxWbYQ" direction="return"/>
+    </ownedOperation>
+    <ownedOperation xmi:id="_rVPBbo0iEeWYzZFrpxWbYQ" name="pop" visibility="public">
+      <ownedParameter xmi:id="_rVPBb40iEeWYzZFrpxWbYQ" type="_rVPBio0iEeWYzZFrpxWbYQ" direction="return"/>
+    </ownedOperation>
+    <ownedOperation xmi:id="_rVPBcI0iEeWYzZFrpxWbYQ" name="top" visibility="public">
+      <ownedParameter xmi:id="_rVPBcY0iEeWYzZFrpxWbYQ" type="_rVPBiI0iEeWYzZFrpxWbYQ" direction="return"/>
+    </ownedOperation>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_rVPBco0iEeWYzZFrpxWbYQ" name="StackTest" visibility="public">
+    <ownedAttribute xmi:id="_rVPBc40iEeWYzZFrpxWbYQ" name="s" visibility="private" type="_rVPBYY0iEeWYzZFrpxWbYQ" association="_rVPBjI0iEeWYzZFrpxWbYQ">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_rVPBdI0iEeWYzZFrpxWbYQ" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_rVPBdY0iEeWYzZFrpxWbYQ" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_rVPBdo0iEeWYzZFrpxWbYQ" value="new Stack(4)"/>
+    </ownedAttribute>
+    <ownedOperation xmi:id="_rVPBd40iEeWYzZFrpxWbYQ" name="assertTrue" visibility="private">
+      <ownedParameter xmi:id="_rVPBeI0iEeWYzZFrpxWbYQ" name="cond" type="_rVPBi40iEeWYzZFrpxWbYQ"/>
+      <ownedParameter xmi:id="_rVPBeY0iEeWYzZFrpxWbYQ" type="_rVPBio0iEeWYzZFrpxWbYQ" direction="return"/>
+    </ownedOperation>
+    <ownedOperation xmi:id="_rVPBeo0iEeWYzZFrpxWbYQ" name="testPushPop" visibility="private">
+      <ownedParameter xmi:id="_rVPBe40iEeWYzZFrpxWbYQ" type="_rVPBio0iEeWYzZFrpxWbYQ" direction="return"/>
+    </ownedOperation>
+    <ownedOperation xmi:id="_rVPBfI0iEeWYzZFrpxWbYQ" name="main" visibility="public" isStatic="true">
+      <ownedParameter xmi:id="_rVPBfY0iEeWYzZFrpxWbYQ" type="_rVPBio0iEeWYzZFrpxWbYQ" direction="return"/>
+    </ownedOperation>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_rVPBfo0iEeWYzZFrpxWbYQ" name="Composite VDM Types">
+    <packagedElement xmi:type="uml:Class" xmi:id="_rVPBf40iEeWYzZFrpxWbYQ" name="Seq&lt;T>">
+      <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_rVPBgI0iEeWYzZFrpxWbYQ" name="T" parameter="_rVPBgY0iEeWYzZFrpxWbYQ">
+        <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_rVPBgY0iEeWYzZFrpxWbYQ" parameteredElement="_rVPBgo0iEeWYzZFrpxWbYQ">
+          <ownedParameteredElement xmi:type="uml:Class" xmi:id="_rVPBgo0iEeWYzZFrpxWbYQ" name="T" templateParameter="_rVPBgY0iEeWYzZFrpxWbYQ"/>
+        </ownedParameter>
+      </ownedTemplateSignature>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_rVPBg40iEeWYzZFrpxWbYQ" name="Binding classes">
+    <packagedElement xmi:type="uml:Class" xmi:id="_rVPBhI0iEeWYzZFrpxWbYQ" name="Seq&lt;int>">
+      <templateBinding xmi:id="_rVPBhY0iEeWYzZFrpxWbYQ" signature="_rVPBgI0iEeWYzZFrpxWbYQ">
+        <parameterSubstitution xmi:id="_rVPBho0iEeWYzZFrpxWbYQ" actual="_rVPBiI0iEeWYzZFrpxWbYQ" formal="_rVPBgY0iEeWYzZFrpxWbYQ"/>
+      </templateBinding>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_rVPBh40iEeWYzZFrpxWbYQ" name="Basic VDM Types">
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_rVPBiI0iEeWYzZFrpxWbYQ" name="int"/>
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_rVPBiY0iEeWYzZFrpxWbYQ" name="nat"/>
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_rVPBio0iEeWYzZFrpxWbYQ" name="Void"/>
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_rVPBi40iEeWYzZFrpxWbYQ" name="bool"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_rVPBjI0iEeWYzZFrpxWbYQ" visibility="private" memberEnd="_rVPBc40iEeWYzZFrpxWbYQ _rVPBjY0iEeWYzZFrpxWbYQ">
+    <ownedEnd xmi:id="_rVPBjY0iEeWYzZFrpxWbYQ" name="" type="_rVPBco0iEeWYzZFrpxWbYQ" association="_rVPBjI0iEeWYzZFrpxWbYQ">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_rVPBjo0iEeWYzZFrpxWbYQ" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_rVPBj40iEeWYzZFrpxWbYQ" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+</uml:Model>

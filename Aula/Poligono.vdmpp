@@ -1,0 +1,27 @@
+class Poligono
+types
+-- TODO Define types here
+	public ponto:: x: nat1
+								y: nat1; 
+
+
+values
+-- TODO Define values here
+
+instance variables
+public a: seq of nat1:= {1,3,5};
+-- TODO Define instance variables here
+	public lados : seq of ponto;
+	public angulos: map ponto to nat1; 
+
+operations
+-- TODO Define operations here
+functions
+-- TODO Define functiones here
+public angulosiguais: Poligono +> Bool
+angulosiguais(p) == 
+ dcl angle: nat1 := p.angulos(ponto);
+
+traces
+-- TODO Define Combinatorial Test Traces here
+end Poligono

@@ -1,12 +1,41 @@
 class Author
 types
--- TODO Define types here
+public AuthorName = seq of char;
+public AffiliationName = seq of char;
+public FieldName = seq of char;
+
+
 values
 -- TODO Define values here
 instance variables
--- TODO Define instance variables here
+private Name: AuthorName := [];
+private Publications: set of Publication := {};
+private Field: set of FieldName := {};
+private ColaboratedWith: set of Author := {};
+private CitedBy: set of Author := {};
+private CitationsNumber: nat := card CitedBy;
+
 operations
--- TODO Define operations here
+public Author : AuthorName * set of Publication * set of FieldName * set of Author * set of Author * nat ==> Author
+	Author(nm, pubs, fields, colabs, citby, citnum) ==
+	(
+	Name := nm;
+	Publications := pubs;
+	Field := fields;
+	ColaboratedWith := colabs;
+	CitedBy := citby;
+	CitationsNumber := citnum;
+	return self;
+	
+	);
+
+public addPublication: Publication ==> ()
+addPublication (pub) ==
+-- o author publication tem de ser a publication.old
+Publications :=  {pub} union Publications;
+
+
+
 functions
 -- TODO Define functiones here
 traces

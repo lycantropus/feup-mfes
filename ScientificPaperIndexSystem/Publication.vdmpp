@@ -1,10 +1,18 @@
 class Publication
 types
--- TODO Define types here
+public AuthorName = seq1 of char;
+public AffiliationName = seq1 of char;
+public PublicationName = seq of char;
+public FieldName = seq1 of char;
+
+
 values
 -- TODO Define values here
 instance variables
--- TODO Define instance variables here
+private name: AuthorName;
+private Publications: seq of PublicationName;
+private Field: seq of FieldName;
+
 operations
 -- TODO Define operations here
 functions

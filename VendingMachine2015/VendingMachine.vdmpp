@@ -1,0 +1,83 @@
+class VendingMachine
+/*
+  Contains the core model of the vending machine.
+  Defines the state variables and the operations available to the users.
+  FEUP, MFES, 2015/16.
+*/
+
+types
+	public BagOfCoins = MoneyUtils`BagOfCoins;
+	
+instance variables
+	private products: set of Product := { };
+	private coins: BagOfCoins := {|->};
+	private amountInserted: nat := 0;
+	
+	-- Invariant: there must exist coins corresponding to the amount inserted by the user
+	inv MoneyUtils`canMakeChange(coins, amountInserted);
+	 
+operations
+	-- constructor, initializes the vending machine
+	public VendingMachine: (set of Product) * BagOfCoins ==> VendingMachine
+	VendingMachine(initialProducts, initialCoins) == (
+		products := initialProducts;
+		coins := initialCoins;
+		return self
+	);
+
+	-- user inserts a coin			
+	public insertCoin: MoneyUtils`Coin ==> () 
+	insertCoin(coin) == 
+		atomic (
+			coins := MoneyUtils`add(coin, coins);
+			amountInserted :=  amountInserted + coin
+		);
+	
+	-- delivers a product and returns the change
+	public selectProduct: Product ==> BagOfCoins
+	selectProduct(product) == 
+		let mk_(newCoins, change) = 
+					MoneyUtils`makeChange(coins, amountInserted - product.getPrice()) in 
+		(
+			    product.removeFromStock(1);
+		  		atomic (
+						coins := newCoins;
+						amountInserted := 0
+				  );
+				  return change
+		)
+	pre product in set products
+	    and product.getQuantity() > 0
+			and amountInserted >= product.getPrice()
+	    and MoneyUtils`canMakeChange(coins, amountInserted - product.getPrice())
+  post amountInserted = 0	
+			 and MoneyUtils`sum(RESULT) = amountInserted~ - product.getPrice()
+			 and MoneyUtils`addAll(RESULT, coins) = coins~;
+			 -- not supported: product.getQuantity() = product.getQuantity()~ - 1
+				
+	-- cancels operation, returning coins corresponding to the amount inserted
+  public cancel: () ==> BagOfCoins
+  cancel() ==
+		let mk_(newCoins, change) = MoneyUtils`makeChange(coins, amountInserted) in 
+		(
+			atomic (
+				coins := newCoins;
+				amountInserted := 0
+			);
+			return change
+		)
+		pre amountInserted > 0
+		post amountInserted = 0
+			   and MoneyUtils`sum(RESULT) = amountInserted~
+		     and MoneyUtils`addAll(coins, RESULT) = coins~;
+	
+	pure public getAmountInserted: () ==> nat
+	getAmountInserted() == return amountInserted;
+  
+  pure public getCoins: () ==> BagOfCoins
+	getCoins() == return coins;
+
+  pure public getProducts: () ==> set of Product
+	getProducts() == return products;
+
+end VendingMachine

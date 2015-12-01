@@ -1,0 +1,71 @@
+class TestVendingMachine is subclass of MyTestCase
+
+operations  
+
+  public testProduct: () ==> ()
+  testProduct() == (
+  	dcl p: Product := new Product("Bolicao", 50, 2);
+  	assertEqual("Bolicao", p.getName());
+  	assertEqual(50, p.getPrice());
+  	assertEqual(2, p.getQuantity());
+  );
+
+  public testCanMakeChange: () ==> ()
+  testCanMakeChange() == (
+  	dcl b1 : MoneyUtils`BagOfCoins := {1 |-> 1, 5 |-> 1};
+  	assertEqual(true, MoneyUtils`canMakeChange(b1, 0));
+  	assertEqual(true, MoneyUtils`canMakeChange(b1, 6));
+  	assertEqual(false, MoneyUtils`canMakeChange(b1, 7));
+  	assertEqual(false, MoneyUtils`canMakeChange(b1, 2));
+  );
+  
+  public testMakeChange: () ==> ()
+  testMakeChange() == (
+  	dcl b1 : MoneyUtils`BagOfCoins := {2 |-> 3, 5 |-> 1, 10 |-> 1};
+  	let mk_(newBag, change) = MoneyUtils`makeChange(b1, 16) in (
+  	   assertEqual({2 |-> 3, 10 |-> 1}, change);
+  	   assertEqual({5 |-> 1}, newBag)
+  	)
+  );
+
+  public testBuyProduct: () ==> ()
+  testBuyProduct() == (
+  	dcl p1: Product := new Product("Bolicao", 50, 2);
+  	dcl p2: Product := new Product("Bongo", 70, 2);
+  	dcl vm : VendingMachine := new VendingMachine({p1, p2}, {50 |-> 1});
+  	dcl change : MoneyUtils`BagOfCoins;
+  	assertEqual({50 |-> 1}, vm.getCoins());
+  	assertEqual({p1, p2}, vm.getProducts());
+  	assertEqual(0, vm.getAmountInserted());  	
+  	vm.insertCoin(100);
+  	assertEqual(100, vm.getAmountInserted());
+  	assertEqual({50 |-> 1, 100 |-> 1}, vm.getCoins());
+  	change := vm.selectProduct(p1);
+  	assertEqual(1, p1.getQuantity());
+  	assertEqual({50 |-> 1}, change);
+  	assertEqual(0, vm.getAmountInserted());
+  	assertEqual({100 |-> 1}, vm.getCoins());
+  );
+  
+  public testCancel: () ==> ()
+  testCancel() == (
+  	dcl vm : VendingMachine := new VendingMachine({}, {|->});
+  	dcl change : MoneyUtils`BagOfCoins;
+  	vm.insertCoin(100);
+  	assertEqual(100, vm.getAmountInserted());
+  	change := vm.cancel();
+  	assertEqual(0, vm.getAmountInserted());
+  	assertEqual({100 |-> 1}, change);
+  	assertEqual({|->}, vm.getCoins());
+  );
+   
+  public testAll: () ==> ()
+  testAll() == (
+    testProduct();
+    testCanMakeChange();
+    testMakeChange();
+  	testBuyProduct();
+  	testCancel();
+  );
+  
+end TestVendingMachine

@@ -1,0 +1,92 @@
+class MoneyUtils
+
+/*
+  Contains utility types and functions to work with bags (multisets) of coins. 
+  FEUP, MFES, 2015/16.
+*/
+
+values
+	-- possible coin values, in cents of euros
+  public CoinValues : set of nat1 = {1, 2, 5, 10, 20, 50, 100, 200};
+  public MaxCoinValue = 200;
+  
+types
+	public Coin = nat1
+		inv c == c in set CoinValues;	
+		 -- ^ introduces a name of an instance of the type, to be used in the right-hand side
+		
+	public BagOfCoins = map Coin to nat1; -- maps coin values to quantities
+
+functions
+	-- Functions are like pure static operations with an implicit return statement
+	-- (with the additional restriction that they cannot manipulate instance variables).
+	
+	-- Adds a coin to a bag of coins and returns the resulting bag.
+	public add: Coin * BagOfCoins +> BagOfCoins 
+	add(coin, bag) ==
+		bag ++ {coin |-> getNumCoins(bag, coin) + 1}; 
+
+	-- Removes a coin from a bag of coins and returns the resulting bag.
+	-- The coin must exist in the bag.
+	private remove: Coin * BagOfCoins -> BagOfCoins 
+	remove(coin, bag) ==
+		if bag(coin) = 1 then {coin} <-: bag else bag ++ {coin |-> bag(coin) - 1} 
+	pre coin in set dom bag;
+	
+	-- Returns the number of occurrences of a coin in a bag.
+	private getNumCoins: BagOfCoins * Coin +> nat
+	getNumCoins(bag, coin) == 
+		if coin in set dom bag then bag(coin) else 0;  
+
+	-- Returns the union of two bags of coins.
+	public addAll: BagOfCoins * BagOfCoins +> BagOfCoins 
+	addAll(bag1, bag2) ==
+		{c |-> getNumCoins(bag1, c) + getNumCoins(bag2, c) | c in set dom bag1 union dom bag2};
+		    		  	
+	-- Returns a set with all possible subbags of a bag of coins.
+  private allSubBags: BagOfCoins +> set of BagOfCoins
+  allSubBags(bag) ==
+  	if bag = {|->} then {{|->}}
+		else let c in set dom bag in dunion {{s, add(c, s)} | s in set allSubBags(remove(c, bag))};
+		      
+	-- Extracts from a bag of coins a subbag (change) that makes up a given amount.
+	-- Returns a tuple with the modified bag and the change.
+	public makeChange: BagOfCoins * nat -> BagOfCoins * BagOfCoins
+	makeChange(bag, amount) == makeChangeAux(bag, amount, MaxCoinValue)
+	pre exists e in set allSubBags(bag) & sum(e) = amount
+	post addAll(RESULT.#1, RESULT.#2) = bag and sum(RESULT.#2) = amount;
+	-- Note: expensive pre/post-condition checking to be enabled only in test stage
+				
+	-- Checks if it is possible to make a given amount from a bag.
+  public canMakeChange: BagOfCoins * nat +> bool
+  canMakeChange(bag, amount) == makeChangeAux(bag, amount, MaxCoinValue).#2 <> nil
+	post RESULT = (exists e in set allSubBags(bag) & sum(e) = amount);  
+	-- Note: expensive post-condition checking to be enabled only in test stage
+	
+operations
+	-- In some cases we use pure static operations instead of functions
+	-- so as to follow an imperative style (such as iteration instead of recursion).
+
+	-- Auxiliary operation that does the work of makeChange.
+  -- Follows a greedy algorithm with backtracing.
+	-- The third argument is the maximum coin value that can be used (to avoid repeated work).
+	-- Returns nil if no solution is found.
+	pure private static makeChangeAux: BagOfCoins * nat * Coin ==> BagOfCoins * [BagOfCoins] 
+	makeChangeAux(bag, amount, maxCoin) == (
+  	if amount = 0 then return mk_(bag, {|->});    
+    for c in reverse [c | c in set dom bag & c <= maxCoin and c <= amount] do
+    		let mk_(newBag, change) = makeChangeAux(remove(c, bag), amount - c, c) 
+    		in if change <> nil then return mk_(newBag, add(c, change));
+    return mk_(bag, nil);
+  );
+  
+  -- Returns the total amount of a bag of coins.
+	pure public static sum: BagOfCoins ==> nat
+	sum(bag) == (
+		dcl s : nat := 0;
+		for all c in set dom bag do 
+			s := s + c * bag(c);
+		return s
+	);
+
+end MoneyUtils

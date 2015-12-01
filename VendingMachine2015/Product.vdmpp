@@ -1,0 +1,42 @@
+class Product
+/*
+  Defines a product at sale in a vending machine.
+  FEUP, MFES, 2015/16.
+*/
+types
+	public ProductName = seq1 of char;
+	public ProductPrice = nat1; -- in cents
+
+instance variables
+	private name: ProductName;
+	private price: ProductPrice;
+	private quantity: nat := 0; -- quantity in stock
+	
+operations
+	public Product : ProductName * ProductPrice * nat ==> Product
+	Product(nm, pr, qty) == (
+		name := nm;
+		price := pr;
+		quantity := qty;
+		return self
+	);
+		
+	public removeFromStock: nat ==> () 
+	removeFromStock(qty) ==
+		quantity  := quantity - qty
+	pre qty <= quantity;
+	
+	public addToStock: nat ==> () 
+	addToStock(qty) ==
+		quantity := quantity + qty;
+	
+	pure public getPrice: () ==> nat
+	getPrice() == return price;
+	
+	pure public getQuantity: () ==> nat
+	getQuantity() == return quantity;
+
+	pure public getName: () ==> ProductName
+	getName() == return name;
+
+end Product

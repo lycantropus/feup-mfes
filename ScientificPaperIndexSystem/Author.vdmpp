@@ -1,38 +1,36 @@
 class Author
 types
 public AuthorName = seq of char;
-public AffiliationName = seq of char;
-public FieldName = seq of char;
+public AuthorID= nat;
 
 
 values
 -- TODO Define values here
 instance variables
-private Name: AuthorName := [];
-private Publications: set of Publication := {};
-private Field: set of FieldName := {};
-private ColaboratedWith: set of Author := {};
-private CitedBy: set of Author := {};
-private CitationsNumber: nat := card CitedBy;
+	private id : AuthorID := 0;
+	private name: AuthorName := [];
+
+
 
 operations
-public Author : AuthorName * set of Publication * set of FieldName * set of Author * set of Author * nat ==> Author
-	Author(nm, pubs, fields, colabs, citby, citnum) ==
-	(
-	Name := nm;
-	Publications := pubs;
-	Field := fields;
-	ColaboratedWith := colabs;
-	CitedBy := citby;
-	CitationsNumber := citnum;
-	return self;
+	public Author : AuthorID * AuthorName  ==> Author
+		Author(aid, an) ==
+		(
+		id := aid;
+		name := an;
+		return self;
+		
+		);
 	
-	);
-
-public addPublication: Publication ==> ()
-addPublication (pub) ==
--- o author publication tem de ser a publication.old
-Publications :=  {pub} union Publications;
+	public changeName: AuthorName ==> ()
+	changeName(an) ==
+	name :=  an;
+	
+	pure public getId: () ==> AuthorID
+		getId() == return id;
+		
+	pure public getName: () ==> AuthorName
+		getName() == return name;
 
 
 

@@ -8,7 +8,6 @@ public Interest= seq of char;
 values
 -- TODO Define values here
 instance variables
-	public static idCounter: nat := 1;
 	private id : AuthorID := 0;
 	private name: AuthorName := [];
 	private interests: set of Interest:= {};
@@ -16,12 +15,11 @@ instance variables
 
 
 operations
-	public Author : AuthorName *
+	public Author : AuthorID * AuthorName *
 									 set of Interest ==> Author
-		Author(an, ints) ==
+		Author(aid, an, ints) ==
 		(
-		id := idCounter;
-		idCounter := idCounter+1;
+		id := aid;
 		name := an;
 		interests := ints;
 		return self;

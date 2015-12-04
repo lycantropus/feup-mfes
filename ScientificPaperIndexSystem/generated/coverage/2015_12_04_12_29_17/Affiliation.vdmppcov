@@ -1,0 +1,41 @@
+class Affiliation
+types
+public AffiliationName = seq of char;
+public AffiliationID= nat;
+
+
+values
+-- TODO Define values here
+instance variables
+	private id : AffiliationID := 0;
+	private name: AffiliationName := [];
+
+
+
+operations
+	public Affiliation : AffiliationID * AffiliationName  ==> Affiliation
+		Affiliation(aid, an) ==
+		(
+		id := aid;
+		name := an;
+		return self;
+		
+		);
+	
+	public changeName: AffiliationName ==> ()
+	changeName(an) ==
+	name :=  an;
+	
+	pure public getId: () ==> AffiliationID
+		getId() == return id;
+		
+	pure public getName: () ==> AffiliationName
+		getName() == return name;
+
+
+
+functions
+-- TODO Define functiones here
+traces
+-- TODO Define Combinatorial Test Traces here
+end Affiliation

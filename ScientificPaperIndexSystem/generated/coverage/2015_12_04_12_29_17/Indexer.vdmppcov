@@ -56,12 +56,7 @@ operations
 		
 	public insertAuthor: Author`AuthorName * set of Author`Interest ==> ()
 		insertAuthor(an, ints) == 
-			authors := authors union {new Author(an, ints)};
-			
-	/**public addInterestToAuthor: Author`AuthorID * set of Author`Interest ==> ()
-			addInterestToAuthor(aid, intr) == 
-			authors := authors / {Author(aid)}
-		*/		
+			authors := authors union {new Author()};		
 									
 functions
 -- TODO Define functiones here

@@ -4,18 +4,23 @@ types
 values
 -- TODO Define values here
 instance variables
-	private publications : set of Publication := {};
-	private authors : set of Author := {};
-	private affiliations : set of Affiliation := {};
-	private fieldsofstudy : set of FieldOfStudy := {};
-	private publicationkeywords : set of PublicationKeyword := {};
-	private publicationauthoraffiliations : set of PublicationAuthorAffiliation := {};
-	private publicationsreferences : set of PublicationReferences := {};
-	private publicationurls : set of PublicationURL := {}; 
+	private publications : map nat1 to Publication := { |->};
+	private publicationIdCounter: nat1:= 1;
+	private authors : map nat1 to Author := { |->};
+	private authorIdCounter : nat1 := 1;
+	private affiliations : map nat1 to Affiliation := { |->};
+	private affiliationIdCounter: nat1 := 1;
+	private fieldsofstudy : map nat1 to FieldOfStudy := { |->};
+	private fieldofstudyIdCounter: nat1 := 1;
+	private publicationkeywords : map nat1 to PublicationKeyword := { |->};
+	private publicationkeywordIdCounter: nat1 := 1;
+	private publicationauthoraffiliations : map nat1 to PublicationAuthorAffiliation := { |->};
+	private publicationsreferences : map nat1 to PublicationReferences := { |->};
+	private publicationurls : map nat1 to PublicationURL := { |->}; 
 operations
-	public Indexer: set of Publication * set of Author * set of Affiliation *
-									set of FieldOfStudy * set of PublicationKeyword * set of PublicationAuthorAffiliation *
-									set of PublicationReferences * set of PublicationURL ==> Indexer
+	public Indexer: map nat1 to Publication * map nat1 to Author * map nat1 to Affiliation *
+									map nat1 to FieldOfStudy * map nat1 to PublicationKeyword * map nat1 to PublicationAuthorAffiliation *
+									map nat1 to PublicationReferences * map nat1 to PublicationURL ==> Indexer
 					Indexer(pubs, auts, affs, fsos, pks, paas, prs, pus) ==
 					(
 						publications := pubs;
@@ -30,38 +35,48 @@ operations
 					);
 					
 					
-	pure public getPublications: () ==> set of Publication
+	pure public getPublications: () ==> map nat1 to Publication
 		getPublications() == return publications;
 		
-	pure public getAuthors: () ==> set of Author
+	pure public getAuthors: () ==> map nat1 to Author
 		getAuthors() == return authors;
 	
-	pure public getAffiliations: () ==> set of Affiliation
+	pure public getAffiliations: () ==> map nat1 to Affiliation
 		getAffiliations() == return affiliations;
 	
-	pure public getFieldsofstudy: () ==> set of FieldOfStudy
+	pure public getFieldsofstudy: () ==> map nat1 to FieldOfStudy
 		getFieldsofstudy() == return fieldsofstudy;
 	
-	pure public getPublicationkeywords: () ==> set of PublicationKeyword
+	pure public getPublicationkeywords: () ==> map nat1 to PublicationKeyword
 		getPublicationkeywords() == return publicationkeywords;
 		
-	pure public getPublicationauthoraffiliations: () ==> set of PublicationAuthorAffiliation
+	pure public getPublicationauthoraffiliations: () ==> map nat1 to PublicationAuthorAffiliation
 		getPublicationauthoraffiliations() == return publicationauthoraffiliations;
 		
-	pure public getPublicationsreferences: () ==> set of PublicationReferences
+	pure public getPublicationsreferences: () ==> map nat1 to PublicationReferences
 		getPublicationsreferences() == return publicationsreferences;
 		
-	pure public getPublicationurls: () ==> set of PublicationURL
+	pure public getPublicationurls: () ==> map nat1 to PublicationURL
 		getPublicationurls() == return publicationurls;
 		
 	public insertAuthor: Author`AuthorName * set of Author`Interest ==> ()
 		insertAuthor(an, ints) == 
-			authors := authors union {new Author(an, ints)};
+				atomic(authors := authors munion {authorIdCounter|-> new Author(an, ints)};
+				authorIdCounter := authorIdCounter+1;);
 			
-	/**public addInterestToAuthor: Author`AuthorID * set of Author`Interest ==> ()
-			addInterestToAuthor(aid, intr) == 
-			authors := authors / {Author(aid)}
-		*/		
+	public getAuthorById: nat1 ==> Author
+		getAuthorById(id) ==
+			return authors(id);
+			
+	public addInterestsToAuthor: nat1 * set of Author`Interest ==> ()
+			addInterestsToAuthor(aid, intr) == 
+				authors := authors munion {aid |-> authors(aid).addInterests(intr)}; 
+			
+	public removeInterestsFromAuthor:  nat1 * set of Author`Interest ==>()
+		removeInterestsFromAuthor(aid, intrs) ==
+			authors:= authors ++ {aid |-> authors(aid).removeInterests(intrs)} 
+			
+				
 									
 functions
 -- TODO Define functiones here

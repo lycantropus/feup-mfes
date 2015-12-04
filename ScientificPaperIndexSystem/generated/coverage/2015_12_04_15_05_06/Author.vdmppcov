@@ -32,20 +32,6 @@ operations
 		addInterest(intr) ==
 		interests:= interests union {intr}
 		post card interests >= card interests~;
-		
-	public addInterests: set of Interest ==> Author
-		addInterests(intr) ==
-		(interests:= interests union intr;
-		return self;)
-		post card interests >= card interests~;
-		
-	public removeInterests: set of Interest ==> Author
-		removeInterests(intrs) == 
-			( interests := interests \ intrs;
-				return self;
-			)
-			pre intrs psubset interests;
-			
 	
 	
 		

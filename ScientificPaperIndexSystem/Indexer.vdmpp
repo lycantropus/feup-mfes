@@ -144,7 +144,13 @@ operations
 				atomic(publicationsreferences := publicationsreferences munion {pReferencesIdCounter |-> new PublicationReferences(idpub, idrefs)};
 				pReferencesIdCounter := pReferencesIdCounter+1;)
 				pre idpub in set dom publications and
-				idrefs subset dom publications;
+				idrefs subset dom publications and
+				forall refs in set idrefs &
+				(
+					publications(idpub).getPublishYear() >= publications(refs).getPublishYear() and
+					publications(idpub).getPublishDate() >= publications(refs).getPublishDate()
+				)
+					;
 			
 
 			

@@ -111,26 +111,6 @@ operations
 		 			for all id in set rng publicationsreferences do
 		 				idrefs:= idrefs union id.getPrids();
 		 				return idrefs));
-		
-		
-		--numero de citaçoes feitas pelo autor 				
-	public getNumberSelfCitations: Author`AuthorID ==> nat
-		getNumberSelfCitations(ida)==
-		(dcl selfpubs: set of PublicationAuthorAffiliation := getPublicationsByAuthor(ida);
-		return card getReferencesFromAuthorPublications(selfpubs));
-		
-		
-	--numero de vezes que o autor é citado
-	
-	public getTimesCited: Author`AuthorID ==> nat
-	getTimesCited(ida) == 
-	(dcl authorpubs: set of PublicationAuthorAffiliation := getPublicationsByAuthor(ida);
-	dcl pubscited: set of Publication`PublicationID := {};
-	for all pubs in set authorpubs do
-		for all references in set rng publicationsreferences do
-			if pubs.getPubid() in set references.getPrids()
-			then pubscited:= pubscited union {pubs.getPubid()};
-			return card pubscited);
 		 			
 	
 	public insertAffiliation: Affiliation`AffiliationName ==> ()

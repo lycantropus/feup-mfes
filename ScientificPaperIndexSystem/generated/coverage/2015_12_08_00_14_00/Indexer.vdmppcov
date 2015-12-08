@@ -15,9 +15,7 @@ instance variables
 	private publicationkeywords : map nat1 to PublicationKeyword := { |->};
 	private publicationkeywordIdCounter: nat1 := 1;
 	private publicationauthoraffiliations : map nat1 to PublicationAuthorAffiliation := { |->};
-	private paaIdCounter: nat1 := 1;
 	private publicationsreferences : map nat1 to PublicationReferences := { |->};
-	private pReferencesIdCounter: nat1 := 1;
 	private publicationurls : map nat1 to PublicationURL := { |->}; 
 operations
 	public Indexer: map nat1 to Publication * map nat1 to Author * map nat1 to Affiliation *
@@ -77,20 +75,6 @@ operations
 	public removeInterestsFromAuthor:  nat1 * set of Author`Interest ==>()
 		removeInterestsFromAuthor(aid, intrs) ==
 			authors:= authors ++ {aid |-> authors(aid).removeInterests(intrs)};
-			
-	public insertPublication: Publication`OriginalPublicationTitle * Publication`PublicationPublishYear * Publication`PublicationPublishDate *
-														Publication`PublicationDOI * Publication`PublicationRank * Author`AuthorID *
-														Affiliation`AffiliationID ==> ()
-		insertPublication(ortitle, pubyear, pubdate, pubdoi, pubrank, idau, idaf) == 
-				atomic(publications := publications munion {publicationIdCounter|-> new Publication(ortitle, pubyear, pubdate, pubdoi, pubrank)};
-				
-				publicationauthoraffiliations:= publicationauthoraffiliations munion {paaIdCounter |-> new PublicationAuthorAffiliation(publicationIdCounter, idau, idaf, affiliations(idaf).getName())} 
-				publicationIdCounter := publicationIdCounter+1;
-				paaIdCounter:= paaIdCounter+1;
-				)
-				pre idau in set dom authors and
-				 idaf in set dom affiliations;
-	
 	
 	
 	public getPublicationsByAuthor: Author`AuthorID ==> seq of PublicationAuthorAffiliation
@@ -100,19 +84,7 @@ operations
 		if pub.getAutid() = ida
 			then pubs := pubs^[pub];
 	return pubs);
-	
-	public insertAffiliation: Affiliation`AffiliationName ==> ()
-		insertAffiliation(name) == 
-				atomic(affiliations := affiliations munion {affiliationIdCounter |-> new Affiliation(name)};
-				affiliationIdCounter := affiliationIdCounter+1;);
 		
-		
-		public insertReferences: Publication`PublicationID * set of Publication`PublicationID ==> ()
-		insertReferences(idpub, idrefs) == 
-				atomic(publicationsreferences := publicationsreferences munion {pReferencesIdCounter |-> new PublicationReferences(idpub, idrefs)};
-				pReferencesIdCounter := pReferencesIdCounter+1;)
-				pre idpub in set dom publications and
-				idrefs subset dom publications;
 			
 
 			

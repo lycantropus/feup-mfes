@@ -20,10 +20,11 @@ private rank: PublicationRank:= 0;
 
 operations
 -- TODO Define operations here
-public Publication :  OriginalPublicationTitle * 
+public Publication : PublicationID * OriginalPublicationTitle * 
 										 PublicationPublishYear * PublicationPublishDate *
 										 PublicationDOI * PublicationRank ==> Publication
-	Publication(opt, ppy, ppd, pdoi, pr) == (
+	Publication(pid, opt, ppy, ppd, pdoi, pr) == (
+		id := pid;
 		originalTitle := opt;
 		publishYear := ppy;
 		publishDate := ppd;
@@ -42,6 +43,8 @@ public Publication :  OriginalPublicationTitle *
 	pre rank<=1
 	post rank<rank~;
 	
+	pure public getId: () ==> PublicationID
+	getId() == return id;
 	
 	pure public getPublishYear: () ==> PublicationPublishYear
 	getPublishYear() == return publishYear;

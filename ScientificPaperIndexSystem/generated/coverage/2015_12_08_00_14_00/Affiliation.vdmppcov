@@ -7,15 +7,16 @@ public AffiliationID= nat;
 values
 -- TODO Define values here
 instance variables
-
+	private id : AffiliationID := 0;
 	private name: AffiliationName := [];
 
 
 
 operations
-	public Affiliation : AffiliationName  ==> Affiliation
-		Affiliation(an) ==
+	public Affiliation : AffiliationID * AffiliationName  ==> Affiliation
+		Affiliation(aid, an) ==
 		(
+		id := aid;
 		name := an;
 		return self;
 		
@@ -25,7 +26,8 @@ operations
 	changeName(an) ==
 	name :=  an;
 	
-
+	pure public getId: () ==> AffiliationID
+		getId() == return id;
 		
 	pure public getName: () ==> AffiliationName
 		getName() == return name;

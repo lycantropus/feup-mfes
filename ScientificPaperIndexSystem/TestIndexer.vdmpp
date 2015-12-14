@@ -164,6 +164,13 @@ operations
  			
   		);
   		
+  		public testPublicationURL: () ==> ()
+  		testPublicationURL() == 
+  		(dcl purl: PublicationURL := new PublicationURL(1,"mypublicatonurl.com" );
+  						assertEqual(1, purl.getPid());
+  						assertEqual("asdasdnurl.com", purl.getUrl());
+  	);
+  		
   			public testIndexerEmpty: () ==> ()
   			testIndexerEmpty() ==
   			(dcl idx: Indexer := new Indexer();
@@ -224,12 +231,14 @@ public testAll: () ==> ()
    testPublicationAuthorAffiliation();
    testPublicationAuthorAffiliationChangeName();
    testPublicationKeyword();
-   	testPublicationKeyword();
-   	testPublicationReferences();
-   	testPublicationReferencesAddReference();
-   	testPublicationReferencesRemoveReference();
-   	testIndexerEmpty();
-   	testIndexerAuthors();
+   testPublicationKeyword();
+   testPublicationReferences();
+   testPublicationReferencesAddReference();
+   testPublicationReferencesRemoveReference();
+   testPublicationURL();
+   testIndexerEmpty();
+   testIndexerAuthors();
+   
   );
   
 end TestIndexer

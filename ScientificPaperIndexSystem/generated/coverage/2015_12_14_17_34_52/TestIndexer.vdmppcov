@@ -137,22 +137,6 @@ operations
   			
   			
   		);
-  		
-  			public testPublicationReferencesAddReference: () ==> ()
-  		testPublicationReferencesAddReference() ==
-  		(dcl pr: PublicationReferences := new PublicationReferences(1,{2, 3});
-  			  		assertEqual(1, pr.getPid());
-  			  		-- da para fazer assert error ou assim?
-  			  		-- assertEqual({1, 2}, pr.getPrids());
-  			  		assertEqual({2, 3}, pr.getPrids());
-  			  		--pr.addReference(2);
-  			  		pr.addReference(4);
-  			  		assertEqual({2, 3, 4}, pr.getPrids());
- 			
-  		);
-  		
-  		
-  		
 		
 
 public testAll: () ==> ()
@@ -172,7 +156,6 @@ public testAll: () ==> ()
    testPublicationKeyword();
    	testPublicationKeyword();
    	testPublicationReferences();
-   	testPublicationReferencesAddReference();
   );
   
 end TestIndexer

@@ -17,7 +17,7 @@ operations
 					prids := rids;
 					return self;
 				)
-				pre id not in set rids;
+				pre pid not in set rids;
 																 
 	public addReference: Publication`PublicationID ==> ()
 	addReference(pubid) ==

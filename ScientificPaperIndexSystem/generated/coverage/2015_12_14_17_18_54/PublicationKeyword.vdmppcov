@@ -1,7 +1,7 @@
 class PublicationKeyword
 types
 public KeywordName = seq of char;
-
+public FieldOfStudyID= nat;
 
 values
 

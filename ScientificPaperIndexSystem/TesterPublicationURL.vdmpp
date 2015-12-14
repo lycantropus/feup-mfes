@@ -1,0 +1,11 @@
+class TesterPublicationURL is subclass of MyTestCase
+
+operations
+public testPublicationURL: () ==> ()
+  	testPublicationURL() == 
+  	(dcl purl: PublicationURL := new PublicationURL(1,"mypublicatonurl.com" );
+  		assertEqual(1, purl.getPid());
+  		assertEqual("mypublicatonurl.com", purl.getUrl());
+  	);
+
+end TesterPublicationURL

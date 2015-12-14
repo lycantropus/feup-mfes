@@ -1,0 +1,39 @@
+class TestIndexer is subclass of MyTestCase
+
+operations
+-- TODO Define operations here
+
+  public testAuthor: () ==> ()
+  testAuthor() == (
+  	dcl a: Author := new Author("Andre", {"amputacoes", "desmembramentos"});
+  	assertEqual("Andre", a.getName());
+  	assertEqual({"amputacoes", "demesmbramentos"}, a.getInterests());
+  );
+
+
+
+
+	public testAuthorChangeName: () ==> ()
+		testAuthorChangeName() ==
+		(dcl a: Author := new Author("Andre", {"amputacoes", "demembramentos"});
+  	a.changeName("Banana");
+  	assertEqual("Banana", a.getName());
+  	);
+  	
+  public testAddInterestsAuthor: () ==> ()
+  testAddInterestsAuthor() ==
+  (dcl a: Author := new Author("Andre", {"amputacoes", "demembramentos"});
+  	assertEqual({"amputacoes", "demesmbramentos"}, a.getInterests());
+  	a.addInterests({"mutilaçoes", "imolaçoes"});
+  	assertEqual({"amputacoes", "demembramentos", "mutilaçoes", "imolaçoes"}, a.getInterests());
+  	);
+		
+
+public testAll: () ==> ()
+  testAll() == (
+    testAuthor();
+    testAuthorChangeName();
+   testAddInterestsAuthor();
+  );
+  
+end TestIndexer

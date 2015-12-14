@@ -1,0 +1,24 @@
+class TestIndexer is subclass of MyTestCase
+types
+-- TODO Define types here
+values
+-- TODO Define values here
+instance variables
+-- TODO Define instance variables here
+operations
+-- TODO Define operations here
+
+  public testAuthor: () ==> ()
+  testAuthor() == (
+  	dcl a: Author := new Author("Andre", {"amputacoes", "demembramentos"});
+  	assertEqual("Andre", a.getName());
+  	assertEqual({"amputacoes", "demembramentos"}, a.getInterests());
+  );
+
+
+
+functions
+-- TODO Define functiones here
+traces
+-- TODO Define Combinatorial Test Traces here
+end TestIndexer

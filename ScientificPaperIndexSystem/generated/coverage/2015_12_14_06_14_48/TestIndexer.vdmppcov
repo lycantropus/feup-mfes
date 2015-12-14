@@ -1,0 +1,122 @@
+class TestIndexer is subclass of MyTestCase
+
+operations
+-- TODO Define operations here
+
+
+	public testAffiliation: () ==> ()
+		testAffiliation() ==
+		(dcl af: Affiliation := new Affiliation("FEUP");
+			assertEqual("FEUP", af.getName());
+		);
+		
+	public testAffiliationChangeName: () ==> ()
+		testAffiliationChangeName() ==
+		(dcl af: Affiliation := new Affiliation("FEUP");
+			assertEqual("FEUP", af.getName());
+			af.changeName("MIT");
+			assertEqual("MIT", af.getName());
+		);
+
+
+
+  public testAuthor: () ==> ()
+  	testAuthor() == 
+  	(dcl a: Author := new Author("Andre", {"amputacoes", "desmembramentos"});
+  		assertEqual("Andre", a.getName());
+  		assertEqual({"amputacoes", "desmembramentos"}, a.getInterests());
+  	);
+
+
+
+
+	public testAuthorChangeName: () ==> ()
+		testAuthorChangeName() ==
+		(dcl a: Author := new Author("Andre", {"amputacoes", "desmembramentos"});
+			assertEqual("Andre", a.getName());
+	  	a.changeName("Banana");
+	  	assertEqual("Banana", a.getName());
+  	);
+  	
+  public testAddInterestsAuthor: () ==> ()
+  	testAddInterestsAuthor() ==
+  	(dcl a: Author := new Author("Andre", {"amputacoes", "desmembramentos"});
+  		assertEqual({"amputacoes", "desmembramentos"}, a.getInterests());
+  		a.addInterests({"mutilaçoes", "imolaçoes"});
+  		assertEqual({"amputacoes", "desmembramentos", "mutilaçoes", "imolaçoes"}, a.getInterests());
+  	);
+  	
+  	public testRemoveInterestsAuthor: () ==> ()
+  		testRemoveInterestsAuthor() ==
+  		(dcl a: Author := new Author("Andre", {"amputacoes", "desmembramentos"});
+  			assertEqual({"amputacoes", "desmembramentos"}, a.getInterests());
+  			a.removeInterests({"amputacoes"});
+  			assertEqual({"desmembramentos"}, a.getInterests());
+  			a.removeInterests({"desmembramentos"});
+  			assertEqual({}, a.getInterests());
+  		);
+  	
+  	public testFieldOfStudy: () ==> ()
+  		testFieldOfStudy() == 
+  		(dcl fos: FieldOfStudy:= new FieldOfStudy("Necromancia");
+  			assertEqual("Necromancia", fos.getName());
+  		);
+  		
+  	public testPublication: () ==> ()
+  		testPublication() ==
+  		(dcl pub: Publication := new Publication("A Specifier's Introduction to Formal Methods",
+  																							1990, 0901, "11.111.11/ISBN", 100);
+  			assertEqual("A Specifier's Introduction to Formal Methods", pub.getOriginalTitle());
+  			assertEqual(1990, pub.getPublishYear());
+  			assertEqual(0901, pub.getPublishDate());
+  			assertEqual("11.111.11/ISBN", pub.getDoi());
+  			assertEqual(100, pub.getRank());  			
+  		);
+  		
+  	public testRaiseRankBy: () ==> ()
+  		testRaiseRankBy() ==
+  		(dcl pub: Publication := new Publication("A Specifier's Introduction to Formal Methods",
+  																							1990, 0901, "11.111.11/ISBN", 100);
+  			assertEqual(100, pub.getRank());
+  			pub.raiseRankBy(50);
+  			assertEqual(50, pub.getRank());
+  			
+  		);
+  		
+  	public testDecreaseRankBy: () ==> ()
+  		testDecreaseRankBy() ==
+  		(dcl pub: Publication := new Publication("A Specifier's Introduction to Formal Methods",
+  																							1990, 0901, "11.111.11/ISBN", 100);
+  			assertEqual(100, pub.getRank());
+  			pub.decreaseRankBy(50);
+  			assertEqual(150, pub.getRank());
+  			
+  		);
+  		
+  	public testPublicationAuthorAffiliation: () ==> ()
+  		testPublicationAuthorAffiliation() ==
+  		(dcl paa: PublicationAuthorAffiliation := new PublicationAuthorAffiliation(1, 2, 3, "FEUP");
+  			assertEqual(1, paa.getPubid());
+  			assertEqual(2, paa.getAutid());
+  			assertEqual(3, paa.getAffid());
+  			assertEqual("FEUP", paa.getOriAffName);
+  		
+  		);
+		
+
+public testAll: () ==> ()
+  testAll() == (
+  	testAffiliation();
+  	testAffiliationChangeName();
+    testAuthor();
+    testAuthorChangeName();
+   testAddInterestsAuthor();
+   testRemoveInterestsAuthor();
+   testFieldOfStudy();
+   testPublication();
+   testRaiseRankBy();
+   testDecreaseRankBy();
+   testPublicationAuthorAffiliation();
+  );
+  
+end TestIndexer

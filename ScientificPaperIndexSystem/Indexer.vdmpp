@@ -43,28 +43,28 @@ operations
 					);
 					
 					
-	pure public getPublications: () ==> map nat1 to Publication
+	pure public getPublications: () ==> map nat to Publication
 		getPublications() == return publications;
 		
-	pure public getAuthors: () ==> map nat1 to Author
+	pure public getAuthors: () ==> map nat to Author
 		getAuthors() == return authors;
 	
-	pure public getAffiliations: () ==> map nat1 to Affiliation
+	pure public getAffiliations: () ==> map nat to Affiliation
 		getAffiliations() == return affiliations;
 	
-	pure public getFieldsofstudy: () ==> map nat1 to FieldOfStudy
+	pure public getFieldsofstudy: () ==> map nat to FieldOfStudy
 		getFieldsofstudy() == return fieldsofstudy;
 	
-	pure public getPublicationkeywords: () ==> map nat1 to PublicationKeyword
+	pure public getPublicationkeywords: () ==> map nat to PublicationKeyword
 		getPublicationkeywords() == return publicationkeywords;
 		
-	pure public getPublicationauthoraffiliations: () ==> map nat1 to PublicationAuthorAffiliation
+	pure public getPublicationauthoraffiliations: () ==> map nat to PublicationAuthorAffiliation
 		getPublicationauthoraffiliations() == return publicationauthoraffiliations;
 		
-	pure public getPublicationsreferences: () ==> map nat1 to PublicationReferences
+	pure public getPublicationsreferences: () ==> map nat to PublicationReferences
 		getPublicationsreferences() == return publicationsreferences;
 		
-	pure public getPublicationurls: () ==> map nat1 to PublicationURL
+	pure public getPublicationurls: () ==> map nat to PublicationURL
 		getPublicationurls() == return publicationurls;
 		
 	public insertAuthor: Author`AuthorName * set of Author`Interest ==> ()
@@ -74,7 +74,14 @@ operations
 							 authors := authors munion {authorIdCounter|-> new Author(an, ints) };
 							 
 					);		 
-				
+		
+	public insertAffiliation: Affiliation`AffiliationName  ==> ()
+		insertAffiliation(affiname) == 
+				(
+							 affiliationIdCounter := affiliationIdCounter+1;
+							 affiliations := affiliations munion {affiliationIdCounter|-> new Affiliation(affiname) };
+							 
+					);					
 			
 	public getAuthorById: nat1 ==> Author
 		getAuthorById(id) ==
@@ -99,11 +106,12 @@ operations
 														Affiliation`AffiliationID ==> ()
 		insertPublication(ortitle, pubyear, pubdate, pubdoi, pubrank, idau, idcoauts, idaf) == 
 				(
+					publicationIdCounter := publicationIdCounter+1;
 					publications := publications munion {publicationIdCounter|-> new Publication(ortitle, pubyear, pubdate, pubdoi, pubrank)};
 					
-					publicationauthoraffiliations:= publicationauthoraffiliations munion {paaIdCounter |-> new PublicationAuthorAffiliation(publicationIdCounter, idau, idcoauts, idaf, affiliations(idaf).getName())}; 
-					publicationIdCounter := publicationIdCounter+1;
 					paaIdCounter:= paaIdCounter+1;
+					publicationauthoraffiliations:= publicationauthoraffiliations munion {paaIdCounter |-> new PublicationAuthorAffiliation(publicationIdCounter, idau, idcoauts, idaf, affiliations(idaf).getName())}; 
+					
 					(dcl everypubauthor: set of Author`AuthorID := {};
 					 dcl minerdos: Author`ErdosNumber:=999;
 					 dcl minerdosauthorid: Author`AuthorID:= 9999999;
@@ -174,9 +182,11 @@ operations
 		  		(
 			  		dcl path : Path := new Path(pub.getPubid() , authors(coauth).getName());
 			  		coauthpath := coauthpath ^ [path];
-			  		return coauthpath;
+			  		
 			  	)	
-	  	)
+			  	
+	  	);
+	  	return coauthpath;
 	  );
 		
 		
@@ -205,13 +215,6 @@ operations
 			if pubs.getPubid() in set references.getPrids()
 			then pubscited:= pubscited union {pubs.getPubid()};
 			return card pubscited);
-		 			
-	
-	public insertAffiliation: Affiliation`AffiliationName ==> ()
-		insertAffiliation(name) == 
-				atomic(affiliations := affiliations munion {affiliationIdCounter |-> new Affiliation(name)};
-				affiliationIdCounter := affiliationIdCounter+1;);
-		
 		
 		public insertReferences: Publication`PublicationID * set of Publication`PublicationID ==> ()
 		insertReferences(idpub, idrefs) == 

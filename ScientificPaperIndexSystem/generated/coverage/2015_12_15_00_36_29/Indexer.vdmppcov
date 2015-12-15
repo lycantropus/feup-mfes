@@ -98,32 +98,18 @@ operations
 														Publication`PublicationDOI * Publication`PublicationRank * Author`AuthorID * set of Author`AuthorID *
 														Affiliation`AffiliationID ==> ()
 		insertPublication(ortitle, pubyear, pubdate, pubdoi, pubrank, idau, idcoauts, idaf) == 
+				atomic(publications := publications munion {publicationIdCounter|-> new Publication(ortitle, pubyear, pubdate, pubdoi, pubrank)};
+				
+				publicationauthoraffiliations:= publicationauthoraffiliations munion {paaIdCounter |-> new PublicationAuthorAffiliation(publicationIdCounter, idau, idcoauts, idaf, affiliations(idaf).getName())} 
+				publicationIdCounter := publicationIdCounter+1;
+				paaIdCounter:= paaIdCounter+1;
+				(dcl everypubauthor: set of Author`AuthorID := {};
+				 --dcl minerdos: Author`ErdosNumber:=999;
+				for all pubauthor in set everypubauthor do
 				(
-					publications := publications munion {publicationIdCounter|-> new Publication(ortitle, pubyear, pubdate, pubdoi, pubrank)};
-					
-					publicationauthoraffiliations:= publicationauthoraffiliations munion {paaIdCounter |-> new PublicationAuthorAffiliation(publicationIdCounter, idau, idcoauts, idaf, affiliations(idaf).getName())}; 
-					publicationIdCounter := publicationIdCounter+1;
-					paaIdCounter:= paaIdCounter+1;
-					(dcl everypubauthor: set of Author`AuthorID := {};
-					 dcl minerdos: Author`ErdosNumber:=999;
-					 dcl minerdosauthorid: Author`AuthorID:= 9999999;
-						for all pubauthor in set everypubauthor do
-						(
-							if authors(pubauthor).getErdos() < minerdos
-							then
-							 (
-								minerdos:= authors(pubauthor).getErdos(); 
-								minerdosauthorid:= pubauthor;
-								)
-						);
-						for all pubauthor in set everypubauthor do
-						(
-						
-							if pubauthor <> minerdosauthorid 
-							then authors(pubauthor).setErdos(minerdos+1);
-						
-						)		
-					)
+					if author(pubauthor).getErdos() < minerdos
+					then minerdos:= author(pubauthor).getErdos();
+				)		
 				)
 				pre idau in set dom authors and
 				idaf in set dom affiliations and

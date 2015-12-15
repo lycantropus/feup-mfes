@@ -286,6 +286,31 @@ operations
   		
   		
   		
+  		public testNumberErdosAuthor: () ==> ()
+  		testNumberErdosAuthor() == 
+  		(dcl idx : Indexer := new Indexer();
+  		
+  			--inserir autores
+  			idx.insertAuthor("autor1", {"cozinhar", "escrever"});
+  			idx.insertAuthor("autor2", {"estudar", "voar"});
+  			idx.insertAuthor("autor3", {"correr", "cantar"});
+  			
+  			idx.getAuthors()(1).setErdos(1);
+  			assertEqual(1,idx.getAuthors()(1).getErdos());
+  			
+  			idx.getAuthors()(2).setErdos(100);
+  			idx.getAuthors()(3).setErdos(3000);
+  			
+  			  			--inserir afiliacoes
+  			idx.insertAffiliation("FEUP");
+  			
+  			idx.insertPublication("A Specifier's Introduction to Formal Methods", 1990, 0901, "11.111.11/ISBN", 100, 1, {2,3}, 1,{});
+  			
+  			
+  				assertEqual(2,idx.getAuthors()(2).getErdos());
+  		  	assertEqual(2,idx.getAuthors()(3).getErdos());
+  		);
+  		
 		
 
 public testAll: () ==> ()
@@ -313,6 +338,7 @@ public testAll: () ==> ()
    testCoautherPath();
    testCountSelfCitations();
    testCountOthersCitations();
+   testNumberErdosAuthor();
    
   );
   

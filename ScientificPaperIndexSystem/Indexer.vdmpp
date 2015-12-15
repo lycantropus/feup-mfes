@@ -115,7 +115,7 @@ operations
 					
 					insertReferences(publicationIdCounter,idrefs);
 					
-					(dcl everypubauthor: set of Author`AuthorID := {};
+					(dcl everypubauthor: set of Author`AuthorID :={idau}union idcoauts ;
 					 dcl minerdos: Author`ErdosNumber:=999;
 					 dcl minerdosauthorid: Author`AuthorID:= 9999999;
 						for all pubauthor in set everypubauthor do

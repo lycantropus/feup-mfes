@@ -1,0 +1,89 @@
+\begin{vdmpp}[breaklines=true]
+class Publication
+types
+public PublicationID = nat;
+public OriginalPublicationTitle = seq of char;
+public PublicationPublishYear = nat;
+public PublicationPublishDate=  nat;
+public PublicationDOI = seq of char;
+public PublicationRank = nat;
+
+
+values
+-- TODO Define values here
+instance variables
+private originalTitle: OriginalPublicationTitle := [];
+private publishYear: PublicationPublishYear:= 0000; --YYYY
+private publishDate: PublicationPublishDate:= 0000; --MMDD
+private doi: PublicationDOI:= [];
+private rank: PublicationRank:= 99999;
+
+operations
+-- TODO Define operations here
+(*@
+\label{Publication:22}
+@*)
+public Publication :  OriginalPublicationTitle * 
+           PublicationPublishYear * PublicationPublishDate *
+           PublicationDOI * PublicationRank ==> Publication
+ Publication(opt, ppy, ppd, pdoi, pr) == (
+  originalTitle := opt;
+  publishYear := ppy;
+  publishDate := ppd;
+  doi := pdoi;
+  rank := pr;
+  return self
+ );
+ 
+(*@
+\label{raiseRankBy:34}
+@*)
+ public raiseRankBy: nat1 ==>()
+ raiseRankBy(nRanks) == rank := rank-nRanks
+ pre rank>1 
+ post rank>=1 and rank<rank~;
+ 
+(*@
+\label{decreaseRankBy:39}
+@*)
+ public decreaseRankBy: nat1 ==>()
+ decreaseRankBy(nRanks) == rank := rank+nRanks
+ pre rank>=1
+ post rank>rank~;
+ 
+(*@
+\label{getOriginalTitle:44}
+@*)
+ pure public getOriginalTitle: () ==> OriginalPublicationTitle
+  getOriginalTitle() == return originalTitle;
+ 
+(*@
+\label{getPublishYear:47}
+@*)
+ pure public getPublishYear: () ==> PublicationPublishYear
+ getPublishYear() == return publishYear;
+ 
+(*@
+\label{getPublishDate:50}
+@*)
+ pure public getPublishDate: () ==> PublicationPublishDate
+ getPublishDate() == return publishDate;
+ 
+(*@
+\label{getDoi:53}
+@*)
+ pure public getDoi: () ==> PublicationDOI
+ getDoi() == return doi;
+ 
+(*@
+\label{getRank:56}
+@*)
+ pure public getRank: () ==> PublicationRank
+ getRank() == return rank;
+
+functions
+-- TODO Define functiones here
+traces
+-- TODO Define Combinatorial Test Traces here
+end Publication
+\end{vdmpp}

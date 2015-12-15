@@ -1,0 +1,60 @@
+\begin{vdmpp}[breaklines=true]
+class PublicationKeyword
+types
+public KeywordName = seq of char;
+
+
+values
+
+ 
+instance variables
+
+ private pid : Publication`PublicationID := 1;
+ private fosid: FieldOfStudy`FieldOfStudyID:= 1;
+ private keyword: KeywordName := [];
+operations
+
+(*@
+\label{PublicationKeyword:16}
+@*)
+public PublicationKeyword : Publication`PublicationID * FieldOfStudy`FieldOfStudyID *
+              KeywordName  ==> PublicationKeyword
+  PublicationKeyword(id, fid, kw) ==
+  (
+  pid := id;
+  fosid := fid;
+  keyword := kw;
+  return self;  
+  );
+  
+(*@
+\label{changeKeyword:26}
+@*)
+  public changeKeyword: KeywordName ==> ()
+ changeKeyword(kw) ==
+ keyword :=  kw;
+ 
+(*@
+\label{getPid:30}
+@*)
+ pure public getPid: () ==> Publication`PublicationID
+  getPid() == return pid;
+  
+(*@
+\label{getFosid:33}
+@*)
+ pure public getFosid: () ==> FieldOfStudy`FieldOfStudyID
+  getFosid() == return fosid;
+  
+(*@
+\label{getKeyword:36}
+@*)
+ pure public getKeyword: () ==> KeywordName
+  getKeyword() == return keyword;
+
+functions
+-- TODO Define functiones here
+traces
+-- TODO Define Combinatorial Test Traces here
+end PublicationKeyword
+\end{vdmpp}

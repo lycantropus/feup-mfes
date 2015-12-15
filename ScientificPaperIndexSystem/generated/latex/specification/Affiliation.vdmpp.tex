@@ -1,0 +1,50 @@
+\begin{vdmpp}[breaklines=true]
+class Affiliation
+types
+public AffiliationName = seq of char;
+public AffiliationID= nat;
+
+
+values
+-- TODO Define values here
+instance variables
+
+ private name: AffiliationName := [];
+
+
+
+operations
+(*@
+\label{Affiliation:16}
+@*)
+ public Affiliation : AffiliationName  ==> Affiliation
+  Affiliation(an) ==
+  (
+  name := an;
+  return self;
+  
+  );
+ 
+(*@
+\label{changeName:24}
+@*)
+ public changeName: AffiliationName ==> ()
+ changeName(an) ==
+ name :=  an;
+ 
+
+  
+(*@
+\label{getName:30}
+@*)
+ pure public getName: () ==> AffiliationName
+  getName() == return name;
+
+
+
+functions
+-- TODO Define functiones here
+traces
+-- TODO Define Combinatorial Test Traces here
+end Affiliation
+\end{vdmpp}

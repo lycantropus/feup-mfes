@@ -1,0 +1,41 @@
+\begin{vdmpp}[breaklines=true]
+class Path
+types
+-- TODO Define types here
+values
+-- TODO Define values here
+instance variables
+private pubid : Publication`PublicationID := 0;
+private coauthname : Author`AuthorName := [];
+operations
+
+(*@
+\label{Path:11}
+@*)
+ public Path : Publication`PublicationID * Author`AuthorName  ==> Path
+  Path(pid, autname) ==
+  (
+  pubid := pid;
+  coauthname := autname;
+  return self;
+  
+  );
+
+(*@
+\label{getpubid:20}
+@*)
+pure public getpubid: () ==> Publication`PublicationID
+   getpubid() == return pubid;
+   
+(*@
+\label{getcoauthname:23}
+@*)
+  pure public getcoauthname: () ==> Author`AuthorName
+   getcoauthname() == return coauthname;
+
+functions
+-- TODO Define functiones here
+traces
+-- TODO Define Combinatorial Test Traces here
+end Path
+\end{vdmpp}

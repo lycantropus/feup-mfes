@@ -1,0 +1,115 @@
+\begin{vdmpp}[breaklines=true]
+class Author
+types
+public AuthorName = seq of char;
+public AuthorID= nat;
+public Interest= seq of char;
+public ErdosNumber= nat;
+
+
+values
+-- TODO Define values here
+instance variables
+ private name: AuthorName := [];
+ private interests: set of Interest:= {};
+private erdos: ErdosNumber := 9999;
+
+
+(*@
+\label{Author:17}
+@*)
+operations
+ public Author : AuthorName *
+          set of Interest ==> Author
+  Author(an, ints) ==
+  (
+  name := an;
+  interests := ints;
+  
+  return self;
+  
+(*@
+\label{changeName:27}
+@*)
+  );
+  
+  public Author : AuthorName *
+          set of Interest * ErdosNumber  ==> Author
+(*@
+\label{addInterest:31}
+@*)
+  Author(an, ints, erdsnum) ==
+  (
+  name := an;
+  interests := ints;
+  erdos := erdsnum;
+(*@
+\label{addInterests:36}
+@*)
+  
+  return self;
+  
+  );
+ 
+ public changeName: AuthorName ==> ()
+(*@
+\label{removeInterests:42}
+@*)
+ changeName(an) ==
+ name :=  an;
+ 
+ 
+ 
+ public addInterest: Interest ==> ()
+  addInterest(intr) ==
+  interests:= interests union {intr}
+  post card interests >= card interests~;
+  
+(*@
+\label{getName:52}
+@*)
+ public addInterests: set of Interest ==> ()
+  addInterests(intr) ==
+(*@
+\label{getErdos:54}
+@*)
+  (interests:= interests union intr;
+(*@
+\label{getInterests:55}
+@*)
+  )
+  post card interests >= card interests~;
+(*@
+\label{setErdos:57}
+@*)
+  
+ public removeInterests: set of Interest ==> ()
+  removeInterests(intrs) == 
+   ( interests := interests \ intrs;
+    
+   )
+   pre intrs subset interests;
+   
+ 
+ pure public getErdos: () ==> ErdosNumber
+ getErdos() == return erdos;
+ 
+ public setErdos: ErdosNumber ==> ()
+  setErdos(en) ==
+  erdos:=en;
+  
+  
+ pure public getName: () ==> AuthorName
+  getName() == return name;
+  
+ pure public getInterests: () ==> set of Interest
+  getInterests() == return interests;
+
+
+
+functions
+-- TODO Define functiones here
+traces
+-- TODO Define Combinatorial Test Traces here
+end Author
+\end{vdmpp}

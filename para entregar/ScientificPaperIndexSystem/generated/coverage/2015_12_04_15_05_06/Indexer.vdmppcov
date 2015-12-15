@@ -1,0 +1,76 @@
+class Indexer
+types
+-- TODO Define types here
+values
+-- TODO Define values here
+instance variables
+	private publications : set of Publication := {};
+	private authors : map nat1 to Author := { |->};
+	private authorIdCounter : nat1 := 1;
+	private affiliations : set of Affiliation := {};
+	private fieldsofstudy : set of FieldOfStudy := {};
+	private publicationkeywords : set of PublicationKeyword := {};
+	private publicationauthoraffiliations : set of PublicationAuthorAffiliation := {};
+	private publicationsreferences : set of PublicationReferences := {};
+	private publicationurls : set of PublicationURL := {}; 
+operations
+	public Indexer: set of Publication * map nat to Author * set of Affiliation *
+									set of FieldOfStudy * set of PublicationKeyword * set of PublicationAuthorAffiliation *
+									set of PublicationReferences * set of PublicationURL ==> Indexer
+					Indexer(pubs, auts, affs, fsos, pks, paas, prs, pus) ==
+					(
+						publications := pubs;
+						authors := auts;
+						affiliations := affs;
+						fieldsofstudy := fsos;
+						publicationkeywords := pks;
+						publicationauthoraffiliations := paas;
+						publicationsreferences := prs;
+						publicationurls := pus;
+						return self;
+					);
+					
+					
+	pure public getPublications: () ==> set of Publication
+		getPublications() == return publications;
+		
+	pure public getAuthors: () ==> map nat1 to Author
+		getAuthors() == return authors;
+	
+	pure public getAffiliations: () ==> set of Affiliation
+		getAffiliations() == return affiliations;
+	
+	pure public getFieldsofstudy: () ==> set of FieldOfStudy
+		getFieldsofstudy() == return fieldsofstudy;
+	
+	pure public getPublicationkeywords: () ==> set of PublicationKeyword
+		getPublicationkeywords() == return publicationkeywords;
+		
+	pure public getPublicationauthoraffiliations: () ==> set of PublicationAuthorAffiliation
+		getPublicationauthoraffiliations() == return publicationauthoraffiliations;
+		
+	pure public getPublicationsreferences: () ==> set of PublicationReferences
+		getPublicationsreferences() == return publicationsreferences;
+		
+	pure public getPublicationurls: () ==> set of PublicationURL
+		getPublicationurls() == return publicationurls;
+		
+	public insertAuthor: Author`AuthorName * set of Author`Interest ==> ()
+		insertAuthor(an, ints) == 
+			(authors := authors munion {authorIdCounter|-> new Author(an, ints)};
+			authorIdCounter := authorIdCounter+1;);
+			
+	public getAuthorbyId: nat1 ==> Author
+		getAuthorbyId(id) ==
+			return authors(id);
+			
+	/**public addInterestToAuthor: Author`AuthorID * set of Author`Interest ==> ()
+			addInterestToAuthor(aid, intr) == 
+			authors := authors / {Author(aid)}
+		*/		
+									
+functions
+-- TODO Define functiones here
+traces
+-- TODO Define Combinatorial Test Traces here
+end Indexer

@@ -1,0 +1,38 @@
+class FieldOfStudy
+types
+public FieldOfStudyName = seq of char;
+public FieldOfStudyID= nat;
+
+
+values
+-- TODO Define values here
+instance variables
+	-- private id : FieldOfStudyID := 0;
+	private name: FieldOfStudyName := [];
+
+
+
+operations
+	public FieldOfStudy : FieldOfStudyName  ==> FieldOfStudy
+		FieldOfStudy( an) ==
+		(
+		name := an;
+		return self;
+		
+		);
+	
+	public changeName: FieldOfStudyName ==> ()
+	changeName(an) ==
+	name :=  an;
+	
+		
+	pure public getName: () ==> FieldOfStudyName
+		getName() == return name;
+
+
+
+functions
+-- TODO Define functiones here
+traces
+-- TODO Define Combinatorial Test Traces here
+end FieldOfStudy

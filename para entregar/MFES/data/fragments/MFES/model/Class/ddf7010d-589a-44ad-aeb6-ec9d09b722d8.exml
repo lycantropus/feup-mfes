@@ -1,0 +1,80 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="Map&lt;nat1,Affiliation&gt;" version="3">
+  <DEPS>
+    <ID name="Map&lt;nat1,Affiliation&gt;" mc="Class" uid="ddf7010d-589a-44ad-aeb6-ec9d09b722d8"/>
+    <EXTID name="Affiliation" mc="Class" uid="f6899568-e58d-40a5-9603-a8045658e010"/>
+    <EXTID name="Map&lt;D,R&gt;" mc="Class" uid="46785ae2-c8de-40e5-ae0e-57ff941d3b6c"/>
+    <EXTID name="nat1" mc="DataType" uid="f26438e4-70a0-463d-9594-a8185bb20616"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="Map&lt;nat1,Affiliation&gt;" mc="Class" uid="ddf7010d-589a-44ad-aeb6-ec9d09b722d8"/>
+    <PID name="Binding classes" mc="Package" uid="8978fa6d-53d8-4413-83ae-8a5b9a3c2496"/>
+    <ATTRIBUTES>
+      <ATT name="IsActive">false</ATT>
+      <ATT name="IsMain">false</ATT>
+      <ATT name="IsElementary">false</ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[Map<nat1,Affiliation>]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="TemplateInstanciation">
+        <OBJECT>
+          <ID name="" mc="TemplateBinding" uid="815ba00a-a51b-49c0-8ab1-8c317d60790a"/>
+          <PID name="Map&lt;nat1,Affiliation&gt;" mc="Class" uid="ddf7010d-589a-44ad-aeb6-ec9d09b722d8"/>
+          <ATTRIBUTES>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <COMP relation="ParameterSubstitution">
+              <OBJECT>
+                <ID name="" mc="TemplateParameterSubstitution" uid="395affd5-1419-4da6-aa61-82aa331e509a"/>
+                <PID name="Map&lt;nat1,Affiliation&gt;" mc="Class" uid="ddf7010d-589a-44ad-aeb6-ec9d09b722d8"/>
+                <ATTRIBUTES>
+                  <ATT name="Value"></ATT>
+                  <ATT name="Name"></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="Actual">
+                    <ID name="nat1" mc="DataType" uid="f26438e4-70a0-463d-9594-a8185bb20616"/>
+                  </LINK>
+                  <LINK relation="FormalParameter">
+                    <REFOBJ>
+                      <ID name="" mc="TemplateParameter" uid="ccf972f3-725c-4aff-bc84-bf431f7ce7e8"/>
+                      <PID name="Map&lt;D,R&gt;" mc="Class" uid="46785ae2-c8de-40e5-ae0e-57ff941d3b6c"/>
+                    </REFOBJ>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+              <OBJECT>
+                <ID name="" mc="TemplateParameterSubstitution" uid="40542174-94b1-4533-b73f-49ce61cd7698"/>
+                <PID name="Map&lt;nat1,Affiliation&gt;" mc="Class" uid="ddf7010d-589a-44ad-aeb6-ec9d09b722d8"/>
+                <ATTRIBUTES>
+                  <ATT name="Value"></ATT>
+                  <ATT name="Name"></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="Actual">
+                    <ID name="Affiliation" mc="Class" uid="f6899568-e58d-40a5-9603-a8045658e010"/>
+                  </LINK>
+                  <LINK relation="FormalParameter">
+                    <REFOBJ>
+                      <ID name="" mc="TemplateParameter" uid="7449ad89-5066-4213-912a-089fc10c086d"/>
+                      <PID name="Map&lt;D,R&gt;" mc="Class" uid="46785ae2-c8de-40e5-ae0e-57ff941d3b6c"/>
+                    </REFOBJ>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

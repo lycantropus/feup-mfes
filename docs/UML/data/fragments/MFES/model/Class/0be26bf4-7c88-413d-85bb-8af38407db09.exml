@@ -1,0 +1,40 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="PublicationDOI" version="3">
+  <DEPS>
+    <ID name="PublicationDOI" mc="Class" uid="0be26bf4-7c88-413d-85bb-8af38407db09"/>
+    <EXTID name="Seq&lt;char&gt;" mc="Class" uid="ca1033b3-0ed2-413b-9388-beecd3283156"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="PublicationDOI" mc="Class" uid="0be26bf4-7c88-413d-85bb-8af38407db09"/>
+    <PID name="Publication" mc="Class" uid="728a1dc4-4888-436b-ba58-413c58e65f1f"/>
+    <ATTRIBUTES>
+      <ATT name="IsActive">false</ATT>
+      <ATT name="IsMain">false</ATT>
+      <ATT name="IsElementary">false</ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[PublicationDOI]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="Parent">
+        <OBJECT>
+          <ID name="" mc="Generalization" uid="1945a647-3215-4850-ba8c-68f5f46ad5cd"/>
+          <PID name="PublicationDOI" mc="Class" uid="0be26bf4-7c88-413d-85bb-8af38407db09"/>
+          <ATTRIBUTES>
+            <ATT name="Discriminator"></ATT>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="SuperType">
+              <ID name="Seq&lt;char&gt;" mc="Class" uid="ca1033b3-0ed2-413b-9388-beecd3283156"/>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

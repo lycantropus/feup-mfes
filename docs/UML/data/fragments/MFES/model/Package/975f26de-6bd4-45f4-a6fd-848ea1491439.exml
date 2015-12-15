@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="Composite VDM Types" version="3">
+  <DEPS>
+    <ID name="Composite VDM Types" mc="Package" uid="975f26de-6bd4-45f4-a6fd-848ea1491439"/>
+    <COMPID name="Map&lt;D,R&gt;" mc="Class" uid="46785ae2-c8de-40e5-ae0e-57ff941d3b6c"/>
+    <COMPID name="Optional&lt;T&gt;" mc="Class" uid="54ff7363-6e93-4098-8488-ac021c8b01ff"/>
+    <COMPID name="Product&lt;A,B&gt;" mc="Class" uid="ada6706c-c26e-4396-824f-5f79e98bdea1"/>
+    <COMPID name="Seq&lt;T&gt;" mc="Class" uid="5c3fe6d4-41de-4b55-b89e-a4968b3cf3f4"/>
+    <COMPID name="Set&lt;T&gt;" mc="Class" uid="ec4b8f7e-7995-4c0a-98fb-fbbe9726304c"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="Composite VDM Types" mc="Package" uid="975f26de-6bd4-45f4-a6fd-848ea1491439"/>
+    <PID name="mfes" mc="Package" uid="7f4981a2-a615-4f83-ada7-7b96ccd508ef"/>
+    <ATTRIBUTES>
+      <ATT name="IsInstantiable">false</ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[Composite VDM Types]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="OwnedElement">
+        <COMPID name="Seq&lt;T&gt;" mc="Class" uid="5c3fe6d4-41de-4b55-b89e-a4968b3cf3f4"/>
+        <COMPID name="Set&lt;T&gt;" mc="Class" uid="ec4b8f7e-7995-4c0a-98fb-fbbe9726304c"/>
+        <COMPID name="Map&lt;D,R&gt;" mc="Class" uid="46785ae2-c8de-40e5-ae0e-57ff941d3b6c"/>
+        <COMPID name="Product&lt;A,B&gt;" mc="Class" uid="ada6706c-c26e-4396-824f-5f79e98bdea1"/>
+        <COMPID name="Optional&lt;T&gt;" mc="Class" uid="54ff7363-6e93-4098-8488-ac021c8b01ff"/>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

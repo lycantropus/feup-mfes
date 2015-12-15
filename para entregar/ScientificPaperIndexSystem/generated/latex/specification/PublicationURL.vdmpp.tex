@@ -1,0 +1,39 @@
+\begin{vdmpp}[breaklines=true]
+class PublicationURL
+types
+public URL = seq of char;
+values
+-- TODO Define values here
+instance variables
+ private pid : Publication`PublicationID := 0;
+ private url : URL := [];
+ 
+operations
+(*@
+\label{PublicationURL:11}
+@*)
+ public PublicationURL : Publication`PublicationID * URL  ==> PublicationURL
+  PublicationURL(id, u) ==
+  (
+   pid := id;
+   url := u;
+   return self;
+  );
+  
+(*@
+\label{getPid:19}
+@*)
+  pure public getPid: () ==> Publication`PublicationID
+   getPid() == return pid;
+   
+(*@
+\label{getUrl:22}
+@*)
+  pure public getUrl: () ==> URL
+   getUrl() == return url;
+functions
+-- TODO Define functiones here
+traces
+-- TODO Define Combinatorial Test Traces here
+end PublicationURL
+\end{vdmpp}

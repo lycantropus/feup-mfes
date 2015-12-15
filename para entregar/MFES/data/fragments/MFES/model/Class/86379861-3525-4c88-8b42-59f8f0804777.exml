@@ -1,0 +1,59 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="Set&lt;Publication::PublicationID&gt;" version="3">
+  <DEPS>
+    <ID name="Set&lt;Publication::PublicationID&gt;" mc="Class" uid="86379861-3525-4c88-8b42-59f8f0804777"/>
+    <EXTID name="PublicationID" mc="Class" uid="8ae28a16-1e1a-4f06-8e78-70ebb524bf90"/>
+    <EXTID name="Set&lt;T&gt;" mc="Class" uid="ec4b8f7e-7995-4c0a-98fb-fbbe9726304c"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="Set&lt;Publication::PublicationID&gt;" mc="Class" uid="86379861-3525-4c88-8b42-59f8f0804777"/>
+    <PID name="Binding classes" mc="Package" uid="8978fa6d-53d8-4413-83ae-8a5b9a3c2496"/>
+    <ATTRIBUTES>
+      <ATT name="IsActive">false</ATT>
+      <ATT name="IsMain">false</ATT>
+      <ATT name="IsElementary">false</ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[Set<Publication::PublicationID>]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="TemplateInstanciation">
+        <OBJECT>
+          <ID name="" mc="TemplateBinding" uid="7a26ba2c-4425-48ac-8a12-7eeea31ad110"/>
+          <PID name="Set&lt;Publication::PublicationID&gt;" mc="Class" uid="86379861-3525-4c88-8b42-59f8f0804777"/>
+          <ATTRIBUTES>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <COMP relation="ParameterSubstitution">
+              <OBJECT>
+                <ID name="" mc="TemplateParameterSubstitution" uid="ab987351-6343-4f61-8bda-6f38996dadbe"/>
+                <PID name="Set&lt;Publication::PublicationID&gt;" mc="Class" uid="86379861-3525-4c88-8b42-59f8f0804777"/>
+                <ATTRIBUTES>
+                  <ATT name="Value"></ATT>
+                  <ATT name="Name"></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="Actual">
+                    <ID name="PublicationID" mc="Class" uid="8ae28a16-1e1a-4f06-8e78-70ebb524bf90"/>
+                  </LINK>
+                  <LINK relation="FormalParameter">
+                    <REFOBJ>
+                      <ID name="" mc="TemplateParameter" uid="90d486ef-c425-40ae-8803-12240bf779c2"/>
+                      <PID name="Set&lt;T&gt;" mc="Class" uid="ec4b8f7e-7995-4c0a-98fb-fbbe9726304c"/>
+                    </REFOBJ>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

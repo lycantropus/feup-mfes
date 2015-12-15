@@ -1,0 +1,40 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="OriginalPublicationTitle" version="3">
+  <DEPS>
+    <ID name="OriginalPublicationTitle" mc="Class" uid="2fdaf174-2648-48e2-b47d-a7f833d4f3c6"/>
+    <EXTID name="Seq&lt;char&gt;" mc="Class" uid="ca1033b3-0ed2-413b-9388-beecd3283156"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="OriginalPublicationTitle" mc="Class" uid="2fdaf174-2648-48e2-b47d-a7f833d4f3c6"/>
+    <PID name="Publication" mc="Class" uid="728a1dc4-4888-436b-ba58-413c58e65f1f"/>
+    <ATTRIBUTES>
+      <ATT name="IsActive">false</ATT>
+      <ATT name="IsMain">false</ATT>
+      <ATT name="IsElementary">false</ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[OriginalPublicationTitle]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="Parent">
+        <OBJECT>
+          <ID name="" mc="Generalization" uid="0f858cff-9189-43c1-a51f-2ffa0e2e7a11"/>
+          <PID name="OriginalPublicationTitle" mc="Class" uid="2fdaf174-2648-48e2-b47d-a7f833d4f3c6"/>
+          <ATTRIBUTES>
+            <ATT name="Discriminator"></ATT>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="SuperType">
+              <ID name="Seq&lt;char&gt;" mc="Class" uid="ca1033b3-0ed2-413b-9388-beecd3283156"/>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

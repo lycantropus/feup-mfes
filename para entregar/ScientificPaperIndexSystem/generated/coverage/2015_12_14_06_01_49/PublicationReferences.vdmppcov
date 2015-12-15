@@ -1,0 +1,45 @@
+class PublicationReferences
+types
+-- TODO Define types here
+values
+-- TODO Define values here
+instance variables
+	private pid : Publication`PublicationID := 0;
+	private prids: set of Publication`PublicationID:= {};
+	
+operations
+
+	public PublicationReferences : Publication`PublicationID * set of Publication`PublicationID
+																 ==> PublicationReferences
+				PublicationReferences(id, rids) ==
+				(
+					pid := id;
+					prids := rids;
+					return self;
+				)
+				pre pid not in set rids;
+																 
+	public addReference: Publication`PublicationID ==> ()
+	addReference(pubid) ==
+	prids:= prids union {pubid}
+	pre pubid not in set prids
+	post pubid in set prids;
+	
+	public removeReference: Publication`PublicationID ==> ()
+	removeReference(prid) ==
+	prids:= prids \ {prid}
+	pre prid in set prids
+	post prid not in set prids;
+	
+	pure public getPid: () ==> Publication`PublicationID
+	getPid() == return pid;
+	
+	pure public getPrids: () ==> set of Publication`PublicationID
+	getPrids() == return prids;
+	
+	
+functions
+-- TODO Define functiones here
+traces
+-- TODO Define Combinatorial Test Traces here
+end PublicationReferences

@@ -1,0 +1,40 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="ErdosNumber" version="3">
+  <DEPS>
+    <ID name="ErdosNumber" mc="Class" uid="5c982d9e-9ac4-464b-9b43-32d6f7f89cc2"/>
+    <EXTID name="nat" mc="DataType" uid="f91d8353-1174-4d3c-9df6-ba7ca60d88da"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="ErdosNumber" mc="Class" uid="5c982d9e-9ac4-464b-9b43-32d6f7f89cc2"/>
+    <PID name="Author" mc="Class" uid="ae1b8846-fe1b-4932-8a30-b597120f1db7"/>
+    <ATTRIBUTES>
+      <ATT name="IsActive">false</ATT>
+      <ATT name="IsMain">false</ATT>
+      <ATT name="IsElementary">false</ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[ErdosNumber]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="Parent">
+        <OBJECT>
+          <ID name="" mc="Generalization" uid="02726538-7ff0-437b-840a-b9f8760881f5"/>
+          <PID name="ErdosNumber" mc="Class" uid="5c982d9e-9ac4-464b-9b43-32d6f7f89cc2"/>
+          <ATTRIBUTES>
+            <ATT name="Discriminator"></ATT>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="SuperType">
+              <ID name="nat" mc="DataType" uid="f91d8353-1174-4d3c-9df6-ba7ca60d88da"/>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

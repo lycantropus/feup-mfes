@@ -1,0 +1,318 @@
+\begin{vdmpp}[breaklines=true]
+class Indexer
+types
+-- TODO Define types here
+values
+-- TODO Define values here
+instance variables
+ private publications : map nat to Publication := { |->};
+ private publicationIdCounter: nat:= 0;
+ private authors : map nat to Author := { |->};
+ private authorIdCounter : nat := 0;
+ private affiliations : map nat to Affiliation := { |->};
+ private affiliationIdCounter: nat := 0;
+ private fieldsofstudy : map nat to FieldOfStudy := { |->};
+ private fieldofstudyIdCounter: nat := 0;
+ private publicationkeywords : map nat to PublicationKeyword := { |->};
+ private publicationkeywordIdCounter: nat := 0;
+ private publicationauthoraffiliations : map nat to PublicationAuthorAffiliation := { |->};
+ private paaIdCounter: nat := 0;
+ private publicationsreferences : map nat to PublicationReferences := { |->};
+ private pReferencesIdCounter: nat := 0;
+ private publicationurls : map nat to PublicationURL := { |->}; 
+operations
+(*@
+\label{Indexer:23}
+@*)
+ public Indexer: map nat to Publication * map nat to Author * map nat1 to Affiliation *
+         map nat to FieldOfStudy * map nat to PublicationKeyword * map nat1 to PublicationAuthorAffiliation *
+         map nat to PublicationReferences * map nat to PublicationURL ==> Indexer
+     Indexer(pubs, auts, affs, fsos, pks, paas, prs, pus) ==
+     (
+      publications := pubs;
+      authors := auts;
+      affiliations := affs;
+      fieldsofstudy := fsos;
+      publicationkeywords := pks;
+      publicationauthoraffiliations := paas;
+      publicationsreferences := prs;
+      publicationurls := pus;
+      return self;
+     );
+     
+ public Indexer: () ==> Indexer
+     Indexer() ==
+     (
+      return self;
+     );
+     
+     
+(*@
+\label{getPublications:46}
+@*)
+ pure public getPublications: () ==> map nat to Publication
+  getPublications() == return publications;
+  
+(*@
+\label{getAuthors:49}
+@*)
+ pure public getAuthors: () ==> map nat to Author
+  getAuthors() == return authors;
+ 
+(*@
+\label{getAffiliations:52}
+@*)
+ pure public getAffiliations: () ==> map nat to Affiliation
+  getAffiliations() == return affiliations;
+ 
+(*@
+\label{getFieldsofstudy:55}
+@*)
+ pure public getFieldsofstudy: () ==> map nat to FieldOfStudy
+  getFieldsofstudy() == return fieldsofstudy;
+ 
+(*@
+\label{getPublicationkeywords:58}
+@*)
+ pure public getPublicationkeywords: () ==> map nat to PublicationKeyword
+  getPublicationkeywords() == return publicationkeywords;
+  
+(*@
+\label{getPublicationauthoraffiliations:61}
+@*)
+ pure public getPublicationauthoraffiliations: () ==> map nat to PublicationAuthorAffiliation
+  getPublicationauthoraffiliations() == return publicationauthoraffiliations;
+  
+(*@
+\label{getPublicationsreferences:64}
+@*)
+ pure public getPublicationsreferences: () ==> map nat to PublicationReferences
+  getPublicationsreferences() == return publicationsreferences;
+  
+(*@
+\label{getPublicationurls:67}
+@*)
+ pure public getPublicationurls: () ==> map nat to PublicationURL
+  getPublicationurls() == return publicationurls;
+  
+(*@
+\label{insertAuthor:70}
+@*)
+ public insertAuthor: Author`AuthorName * set of Author`Interest ==> ()
+  insertAuthor(an, ints) == 
+    (
+        authorIdCounter := authorIdCounter+1;
+        authors := authors munion {authorIdCounter|-> new Author(an, ints) };
+        
+     );   
+  
+ public insertAffiliation: Affiliation`AffiliationName  ==> ()
+(*@
+\label{getAuthorById:79}
+@*)
+  insertAffiliation(affiname) == 
+    (
+        affiliationIdCounter := affiliationIdCounter+1;
+        affiliations := affiliations munion {affiliationIdCounter|-> new Affiliation(affiname) };
+(*@
+\label{addInterestsToAuthor:83}
+@*)
+        
+     );    
+      
+   
+(*@
+\label{publicationsreferences:87}
+@*)
+(*@
+\label{insertPublicationsReferences:87}
+@*)
+ public getAuthorById: nat1 ==> Author
+  getAuthorById(id) ==
+   return authors(id);
+(*@
+\label{removeInterestsFromAuthor:90}
+@*)
+   
+ public addInterestsToAuthor: nat1 * set of Author`Interest ==> ()
+   addInterestsToAuthor(aid, intr) == 
+   (dcl author: Author := getAuthorById(aid);
+   author.addInterests(intr);
+    authors := authors munion {aid |-> author}; 
+    );
+(*@
+\label{insertPublication:97}
+@*)
+   
+ public removeInterestsFromAuthor:  nat1 * set of Author`Interest ==>()
+  removeInterestsFromAuthor(aid, intrs) ==
+  (dcl author: Author := getAuthorById(aid);
+   author.removeInterests(intrs);
+   authors:= authors ++ {aid |-> author};
+   );
+   
+ public insertPublication: Publication`OriginalPublicationTitle * Publication`PublicationPublishYear * Publication`PublicationPublishDate *
+              Publication`PublicationDOI * Publication`PublicationRank * Author`AuthorID * set of Author`AuthorID *
+              Affiliation`AffiliationID * set of Publication`PublicationID ==> ()
+  insertPublication(ortitle, pubyear, pubdate, pubdoi, pubrank, idau, idcoauts, idaf, idrefs) == 
+    (
+     publicationIdCounter := publicationIdCounter+1;
+     publications := publications munion {publicationIdCounter|-> new Publication(ortitle, pubyear, pubdate, pubdoi, pubrank)};
+(*@
+\label{getPublicationsByAuthor:112}
+@*)
+     
+     paaIdCounter:= paaIdCounter+1;
+     publicationauthoraffiliations:= publicationauthoraffiliations munion {paaIdCounter |-> new PublicationAuthorAffiliation(publicationIdCounter, idau, idcoauts, idaf, affiliations(idaf).getName())}; 
+     
+     insertReferences(publicationIdCounter,idrefs);
+     
+     (dcl everypubauthor: set of Author`AuthorID :={idau}union idcoauts ;
+      dcl minerdos: Author`ErdosNumber:=999;
+(*@
+\label{getAuthorByPublication:120}
+@*)
+      dcl minerdosauthorid: Author`AuthorID:= 9999999;
+      for all pubauthor in set everypubauthor do
+      (
+       if authors(pubauthor).getErdos() < minerdos
+       then
+        (
+        minerdos:= authors(pubauthor).getErdos(); 
+        minerdosauthorid:= pubauthor;
+        )
+      );
+(*@
+\label{getReferencesFromAuthorPublications:130}
+@*)
+      for all pubauthor in set everypubauthor do
+      (
+      
+       if pubauthor <> minerdosauthorid 
+       then authors(pubauthor).setErdos(minerdos+1);
+      
+      )  
+     )
+    )
+    pre idau in set dom authors and
+    idaf in set dom affiliations and
+(*@
+\label{getCoauthorPath:141}
+@*)
+    forall idcoau in set idcoauts &
+    (
+    idcoau in set dom authors
+    );
+ 
+ 
+ 
+ public getPublicationsByAuthor: Author`AuthorID ==> set of PublicationAuthorAffiliation
+ getPublicationsByAuthor(ida) == 
+ (dcl pubs : set of PublicationAuthorAffiliation := {};
+ for all pub in set rng publicationauthoraffiliations do
+  if pub.getAutid() = ida
+   then pubs := pubs union {pub};
+ return pubs);
+ 
+ public getAuthorByPublication: Publication`PublicationID ==> Author`AuthorID
+  getAuthorByPublication(idp) ==
+  (dcl aid: Author`AuthorID :=0;
+  for all pub in set rng publicationauthoraffiliations do
+(*@
+\label{getNumberSelfCitations:160}
+@*)
+  if idp = pub.getPubid()
+  then aid:= pub.getAutid();
+  return aid);
+  
+ 
+ 
+ public getReferencesFromAuthorPublications: set of PublicationAuthorAffiliation ==> set of Publication`PublicationID
+ getReferencesFromAuthorPublications(pubs) ==
+    (dcl idpubs: set of Publication`PublicationID := {};
+     for all pub in set pubs do
+      idpubs:= idpubs union {pub.getPubid()};
+     (dcl idrefs: set of Publication`PublicationID := {};
+      for all id in set rng publicationsreferences do
+       idrefs:= idrefs union id.getPrids();
+(*@
+\label{getTimesCited:174}
+@*)
+       return idrefs));
+       
+ 
+ public getCoauthorPath: Author`AuthorID ==> seq of Path
+   getCoauthorPath(aid) ==
+   (dcl pubs: set of PublicationAuthorAffiliation := getPublicationsByAuthor(aid);
+    dcl coauthpath:  seq of Path:= [];
+    for all pub in set pubs do
+    (
+     dcl coauths: set of Author`AuthorID:= pub.getCoautids();
+      for all coauth in set coauths do
+(*@
+\label{insertAffiliation:185}
+@*)
+      (
+       dcl path : Path := new Path(pub.getPubid() , authors(coauth).getName());
+       coauthpath := coauthpath ^ [path]; 
+      )   
+    );
+    return coauthpath;
+(*@
+\label{insertReferences:191}
+@*)
+   );
+  
+  
+  --numero de citaçoes feitas pelo autor a si mesmo
+  --TODO 
+ public getNumberSelfCitations: Author`AuthorID ==> nat
+  getNumberSelfCitations(ida)==
+  (dcl selfpubs: set of PublicationAuthorAffiliation := getPublicationsByAuthor(ida);
+   (dcl idrefs: set of Publication`PublicationID := getReferencesFromAuthorPublications(selfpubs);
+    (dcl idselfref: set of Publication`PublicationID := {}; 
+     for all refs in set idrefs do
+       if ida = getAuthorByPublication(refs)
+       then  idselfref := idselfref union {refs};
+      return card getReferencesFromAuthorPublications(selfpubs))));
+  
+  
+  
+ --numero de vezes que o autor é citado
+ 
+ public getTimesCited: Author`AuthorID ==> nat
+ getTimesCited(ida) == 
+ (dcl authorpubs: set of PublicationAuthorAffiliation := getPublicationsByAuthor(ida);
+ dcl pubscited: seq of Publication`PublicationID := [];
+ for all pubs in set authorpubs do
+ (
+  for all references in set rng publicationsreferences do
+   if {pubs.getPubid()} subset references.getPrids()
+   then pubscited:= pubscited ^ [pubs.getPubid()];
+ );
+   return len pubscited);
+  
+  public insertReferences: Publication`PublicationID * set of Publication`PublicationID ==> ()
+  insertReferences(idpub, idrefs) == 
+    (pReferencesIdCounter := pReferencesIdCounter+1;
+    publicationsreferences := publicationsreferences munion {pReferencesIdCounter |-> new PublicationReferences(idpub, idrefs)};
+    )
+    pre idpub in set dom publications and
+    idrefs subset dom publications and
+    forall refs in set idrefs &
+    (
+     publications(idpub).getPublishYear() >= publications(refs).getPublishYear() and
+     publications(idpub).getPublishDate() >= publications(refs).getPublishDate()
+    )
+     ;
+   
+
+   
+    
+         
+functions
+-- TODO Define functiones here
+traces
+-- TODO Define Combinatorial Test Traces here
+end Indexer
+\end{vdmpp}

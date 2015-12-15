@@ -1,0 +1,83 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="mfes" version="3">
+  <DEPS>
+    <ID name="mfes" mc="Package" uid="7f4981a2-a615-4f83-ada7-7b96ccd508ef"/>
+    <COMPID name="Affiliation" mc="Class" uid="f6899568-e58d-40a5-9603-a8045658e010"/>
+    <COMPID name="Author" mc="Class" uid="ae1b8846-fe1b-4932-8a30-b597120f1db7"/>
+    <COMPID name="Basic VDM Types" mc="Package" uid="e4a53cba-574b-470c-9dc0-c21919dc8ec2"/>
+    <COMPID name="Binding classes" mc="Package" uid="8978fa6d-53d8-4413-83ae-8a5b9a3c2496"/>
+    <COMPID name="Cacular Caminho de Co-Autor" mc="UseCase" uid="d501cf91-32f4-4385-ac46-714d91128ab4"/>
+    <COMPID name="Calcular número de Erdos" mc="UseCase" uid="19c7f6bd-a463-414e-96f1-59b2fd8f454d"/>
+    <COMPID name="Composite VDM Types" mc="Package" uid="975f26de-6bd4-45f4-a6fd-848ea1491439"/>
+    <COMPID name="Conta Citações por outros Autores" mc="UseCase" uid="b35be635-075b-4f2f-9782-ad2640dbb825"/>
+    <COMPID name="Contar Citações próprias" mc="UseCase" uid="e6d2a46c-6eae-4153-9310-a88b86c02271"/>
+    <COMPID name="FieldOfStudy" mc="Class" uid="ed24ea8b-b925-4cfa-a531-c4b9f094a212"/>
+    <COMPID name="IO" mc="Class" uid="c91931c3-de91-487d-9071-62b2a1b903a5"/>
+    <COMPID name="Indexer" mc="Class" uid="b4d9e70f-9b11-4839-b5d5-9a2e7ef304c0"/>
+    <COMPID name="Inserir Autor" mc="UseCase" uid="666018a1-96e7-4ddf-b7cf-a4ada7f48402"/>
+    <COMPID name="Inserir Fililação" mc="UseCase" uid="4daa521e-d4a9-4388-8d35-ea4263de2974"/>
+    <COMPID name="Inserir Interesses de Autor" mc="UseCase" uid="cf38fa09-1160-43e5-a9af-16133708a737"/>
+    <COMPID name="Inserir Publicação" mc="UseCase" uid="a686750b-7573-42d1-8c70-df7e83bf5d1d"/>
+    <COMPID name="Inserir Referência" mc="UseCase" uid="e04615fb-fb2a-4978-9194-67fe89a3f060"/>
+    <COMPID name="MyTestCase" mc="Class" uid="81c41ed7-4381-45cc-be47-ae5b6c81943f"/>
+    <COMPID name="Path" mc="Class" uid="3ed248c7-8bc8-41d5-b356-36e9fade249c"/>
+    <COMPID name="Publication" mc="Class" uid="728a1dc4-4888-436b-ba58-413c58e65f1f"/>
+    <COMPID name="PublicationAuthorAffiliation" mc="Class" uid="0310ec6e-e3d9-4834-89ee-6b9d92c846ac"/>
+    <COMPID name="PublicationKeyword" mc="Class" uid="1edb4d0a-31f3-4edc-b4c4-33f1d31ed381"/>
+    <COMPID name="PublicationReferences" mc="Class" uid="8fe32707-252c-4612-86bc-f9b17cc6bee2"/>
+    <COMPID name="PublicationURL" mc="Class" uid="ef82beab-43b4-4172-935d-5d48276caf67"/>
+    <COMPID name="Remover Interesses de Autor" mc="UseCase" uid="239f2fd5-8c35-42f8-8cb4-45abde025b48"/>
+    <COMPID name="TestIndexer" mc="Class" uid="805e9ea3-cf43-4bb8-90b8-290ce3292ba9"/>
+    <COMPID name="User" mc="Actor" uid="7553b235-ee00-40d9-b6e1-4b22fee689d2"/>
+    <COMPID name="mfes Use Case diagram" mc="UseCaseDiagram" uid="b7015540-43bb-4b9a-9b4b-8d6ec9fdb953"/>
+    <COMPID name="overview diagram" mc="ClassDiagram" uid="512227c8-d8fd-496a-9171-86517dc3fddc"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="mfes" mc="Package" uid="7f4981a2-a615-4f83-ada7-7b96ccd508ef"/>
+    <PID name="MFES" mc="Project" uid="d08ec210-a438-4062-bdaf-eecf9a658558"/>
+    <ATTRIBUTES>
+      <ATT name="IsInstantiable">false</ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[mfes]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="OwnedElement">
+        <COMPID name="Affiliation" mc="Class" uid="f6899568-e58d-40a5-9603-a8045658e010"/>
+        <COMPID name="Author" mc="Class" uid="ae1b8846-fe1b-4932-8a30-b597120f1db7"/>
+        <COMPID name="FieldOfStudy" mc="Class" uid="ed24ea8b-b925-4cfa-a531-c4b9f094a212"/>
+        <COMPID name="Indexer" mc="Class" uid="b4d9e70f-9b11-4839-b5d5-9a2e7ef304c0"/>
+        <COMPID name="MyTestCase" mc="Class" uid="81c41ed7-4381-45cc-be47-ae5b6c81943f"/>
+        <COMPID name="Path" mc="Class" uid="3ed248c7-8bc8-41d5-b356-36e9fade249c"/>
+        <COMPID name="Publication" mc="Class" uid="728a1dc4-4888-436b-ba58-413c58e65f1f"/>
+        <COMPID name="PublicationAuthorAffiliation" mc="Class" uid="0310ec6e-e3d9-4834-89ee-6b9d92c846ac"/>
+        <COMPID name="PublicationKeyword" mc="Class" uid="1edb4d0a-31f3-4edc-b4c4-33f1d31ed381"/>
+        <COMPID name="PublicationReferences" mc="Class" uid="8fe32707-252c-4612-86bc-f9b17cc6bee2"/>
+        <COMPID name="PublicationURL" mc="Class" uid="ef82beab-43b4-4172-935d-5d48276caf67"/>
+        <COMPID name="TestIndexer" mc="Class" uid="805e9ea3-cf43-4bb8-90b8-290ce3292ba9"/>
+        <COMPID name="IO" mc="Class" uid="c91931c3-de91-487d-9071-62b2a1b903a5"/>
+        <COMPID name="Composite VDM Types" mc="Package" uid="975f26de-6bd4-45f4-a6fd-848ea1491439"/>
+        <COMPID name="Binding classes" mc="Package" uid="8978fa6d-53d8-4413-83ae-8a5b9a3c2496"/>
+        <COMPID name="Basic VDM Types" mc="Package" uid="e4a53cba-574b-470c-9dc0-c21919dc8ec2"/>
+        <COMPID name="User" mc="Actor" uid="7553b235-ee00-40d9-b6e1-4b22fee689d2"/>
+        <COMPID name="Inserir Publicação" mc="UseCase" uid="a686750b-7573-42d1-8c70-df7e83bf5d1d"/>
+        <COMPID name="Inserir Autor" mc="UseCase" uid="666018a1-96e7-4ddf-b7cf-a4ada7f48402"/>
+        <COMPID name="Inserir Fililação" mc="UseCase" uid="4daa521e-d4a9-4388-8d35-ea4263de2974"/>
+        <COMPID name="Inserir Referência" mc="UseCase" uid="e04615fb-fb2a-4978-9194-67fe89a3f060"/>
+        <COMPID name="Inserir Interesses de Autor" mc="UseCase" uid="cf38fa09-1160-43e5-a9af-16133708a737"/>
+        <COMPID name="Remover Interesses de Autor" mc="UseCase" uid="239f2fd5-8c35-42f8-8cb4-45abde025b48"/>
+        <COMPID name="Contar Citações próprias" mc="UseCase" uid="e6d2a46c-6eae-4153-9310-a88b86c02271"/>
+        <COMPID name="Conta Citações por outros Autores" mc="UseCase" uid="b35be635-075b-4f2f-9782-ad2640dbb825"/>
+        <COMPID name="Cacular Caminho de Co-Autor" mc="UseCase" uid="d501cf91-32f4-4385-ac46-714d91128ab4"/>
+        <COMPID name="Calcular número de Erdos" mc="UseCase" uid="19c7f6bd-a463-414e-96f1-59b2fd8f454d"/>
+      </COMP>
+      <COMP relation="Product">
+        <COMPID name="overview diagram" mc="ClassDiagram" uid="512227c8-d8fd-496a-9171-86517dc3fddc"/>
+        <COMPID name="mfes Use Case diagram" mc="UseCaseDiagram" uid="b7015540-43bb-4b9a-9b4b-8d6ec9fdb953"/>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

@@ -1,0 +1,330 @@
+class TestIndexer is subclass of MyTestCase
+
+operations
+-- TODO Define operations here
+
+
+	public testAffiliation: () ==> ()
+		testAffiliation() ==
+		(dcl af: Affiliation := new Affiliation("FEUP");
+			assertEqual("FEUP", af.getName());
+		);
+		
+	public testAffiliationChangeName: () ==> ()
+		testAffiliationChangeName() ==
+		(dcl af: Affiliation := new Affiliation("FEUP");
+			assertEqual("FEUP", af.getName());
+			af.changeName("MIT");
+			assertEqual("MIT", af.getName());
+		);
+
+  public testAuthor: () ==> ()
+  	testAuthor() == 
+  	(dcl a: Author := new Author("Andre", {"amputacoes", "desmembramentos"});
+  		assertEqual("Andre", a.getName());
+  		assertEqual({"amputacoes", "desmembramentos"}, a.getInterests());
+  	);
+
+	public testAuthorChangeName: () ==> ()
+		testAuthorChangeName() ==
+		(dcl a: Author := new Author("Andre", {"amputacoes", "desmembramentos"});
+			assertEqual("Andre", a.getName());
+	  	a.changeName("Banana");
+	  	assertEqual("Banana", a.getName());
+  	);
+  	
+  public testAddInterestsAuthor: () ==> ()
+  	testAddInterestsAuthor() ==
+  	(dcl a: Author := new Author("Andre", {"amputacoes", "desmembramentos"});
+  		assertEqual({"amputacoes", "desmembramentos"}, a.getInterests());
+  		a.addInterests({"mutilaçoes", "imolaçoes"});
+  		assertEqual({"amputacoes", "desmembramentos", "mutilaçoes", "imolaçoes"}, a.getInterests());
+  	);
+  	
+  	public testRemoveInterestsAuthor: () ==> ()
+  		testRemoveInterestsAuthor() ==
+  		(dcl a: Author := new Author("Andre", {"amputacoes", "desmembramentos"});
+  			assertEqual({"amputacoes", "desmembramentos"}, a.getInterests());
+  			a.removeInterests({"amputacoes"});
+  			assertEqual({"desmembramentos"}, a.getInterests());
+  			a.removeInterests({"desmembramentos"});
+  			assertEqual({}, a.getInterests());
+  		);
+  	
+  	public testFieldOfStudy: () ==> ()
+  		testFieldOfStudy() == 
+  		(dcl fos: FieldOfStudy:= new FieldOfStudy("Necromancia");
+  			assertEqual("Necromancia", fos.getName());
+  		);
+  		
+  	public testPublication: () ==> ()
+  		testPublication() ==
+  		(dcl pub: Publication := new Publication("A Specifier's Introduction to Formal Methods",
+  																							1990, 0901, "11.111.11/ISBN", 100);
+  			assertEqual("A Specifier's Introduction to Formal Methods", pub.getOriginalTitle());
+  			assertEqual(1990, pub.getPublishYear());
+  			assertEqual(0901, pub.getPublishDate());
+  			assertEqual("11.111.11/ISBN", pub.getDoi());
+  			assertEqual(100, pub.getRank());  			
+  		);
+  		
+  	public testRaiseRankBy: () ==> ()
+  		testRaiseRankBy() ==
+  		(dcl pub: Publication := new Publication("A Specifier's Introduction to Formal Methods",
+  																							1990, 0901, "11.111.11/ISBN", 100);
+  			assertEqual(100, pub.getRank());
+  			pub.raiseRankBy(50);
+  			assertEqual(50, pub.getRank());
+  			
+  		);
+  		
+  	public testDecreaseRankBy: () ==> ()
+  		testDecreaseRankBy() ==
+  		(dcl pub: Publication := new Publication("A Specifier's Introduction to Formal Methods",
+  																							1990, 0901, "11.111.11/ISBN", 100);
+  			assertEqual(100, pub.getRank());
+  			pub.decreaseRankBy(50);
+  			assertEqual(150, pub.getRank());
+  			
+  		);
+  		
+  	public testPublicationAuthorAffiliation: () ==> ()
+  		testPublicationAuthorAffiliation() ==
+  		(dcl paa: PublicationAuthorAffiliation := new PublicationAuthorAffiliation(1, 2, {1, 3, 4}, 3 , "FEUP");
+  			assertEqual(1, paa.getPubid());
+  			assertEqual(2, paa.getAutid());
+  			assertEqual(3, paa.getAffid());
+  			assertEqual("FEUP", paa.getOriAffName());
+  		
+  		);
+  		
+  		public testPublicationAuthorAffiliationChangeName: () ==> ()
+  		testPublicationAuthorAffiliationChangeName() ==
+  		(dcl paa: PublicationAuthorAffiliation := new PublicationAuthorAffiliation(1, 2, {1, 3, 4}, 3,  "FEUP");
+  			assertEqual("FEUP", paa.getOriAffName());
+  			paa.changeOriAffName("MIT");
+  			assertEqual("MIT", paa.getOriAffName());	
+  		);
+  		
+  		public testPublicationKeyword: () ==> ()
+  		testPublicationKeyword() ==
+  		(dcl pk: PublicationKeyword := new PublicationKeyword(1, 2, "MFES");
+	  		assertEqual(1, pk.getPid());
+	  		assertEqual(2, pk.getFosid());
+	  		assertEqual("MFES", pk.getKeyword());
+  		);
+  		
+  		public testPublicationKeywordChangeKeyword: () ==> ()
+  		testPublicationKeywordChangeKeyword() ==
+  		(dcl pk: PublicationKeyword := new PublicationKeyword(1, 2, "MFES");
+	  		pk.changeKeyword("SEFM");
+	  		assertEqual("SEFM", pk.getKeyword());
+  		);
+  		
+  		public testPublicationReferences: () ==> ()
+  		testPublicationReferences() ==
+  		(dcl pr: PublicationReferences := new PublicationReferences(1,{2, 3});
+  			  		assertEqual(1, pr.getPid());
+  			  		-- da para fazer assert error ou assim?
+  			  		-- assertEqual({1, 2}, pr.getPrids());
+  			  		assertEqual({2, 3}, pr.getPrids());	
+  		);
+  		
+  		public testPublicationReferencesAddReference: () ==> ()
+  		testPublicationReferencesAddReference() ==
+  		(dcl pr: PublicationReferences := new PublicationReferences(1,{2, 3});
+  			  		assertEqual(1, pr.getPid());
+  			  		-- da para fazer assert error ou assim?
+  			  		assertEqual({1, 2}, pr.getPrids());
+  			  		assertEqual({2, 3}, pr.getPrids());
+  			  		pr.addReference(2);
+  			  		pr.addReference(4);
+  			  		assertEqual({2, 3, 4}, pr.getPrids());
+ 			
+  		);
+  		
+  		public testPublicationReferencesRemoveReference: () ==> ()
+  		testPublicationReferencesRemoveReference() ==
+  		(dcl pr: PublicationReferences := new PublicationReferences(1,{2, 3, 4});
+  			  		assertEqual(1, pr.getPid());
+  			  		-- da para fazer assert error ou assim?
+  			  		-- assertEqual({1, 2}, pr.getPrids());
+  			  		assertEqual({2, 3, 4}, pr.getPrids());
+  			  		--pr.addReference(2);
+  			  		pr.removeReference(4);
+  			  		assertEqual({2, 3}, pr.getPrids());	
+  		);
+  		
+  		public testPublicationURL: () ==> ()
+  		testPublicationURL() == 
+  		(dcl purl: PublicationURL := new PublicationURL(1,"mypublicatonurl.com" );
+  						assertEqual(1, purl.getPid());
+  						assertEqual("mypublicatonurl.com", purl.getUrl());
+  	);
+  		
+  			public testIndexerEmpty: () ==> ()
+  			testIndexerEmpty() ==
+  			(dcl idx: Indexer := new Indexer();
+	  			assertEqual({|->}, idx.getPublications());
+	  			assertEqual({|->}, idx.getAuthors());
+	  			assertEqual({|->}, idx.getAffiliations());
+	  			assertEqual({|->}, idx.getFieldsofstudy());
+	  			assertEqual({|->}, idx.getPublicationkeywords());
+	  			assertEqual({|->}, idx.getPublicationauthoraffiliations());
+	  			assertEqual({|->}, idx.getPublicationsreferences());
+	  			assertEqual({|->}, idx.getPublicationurls());
+  			);
+  			
+  			public testIndexerAuthors: () ==> ()
+  			testIndexerAuthors() ==
+  			(dcl idx: Indexer := new Indexer();
+  				idx.insertAuthor("autor1", {"cozinhar", "escrever"});
+  				assertEqual( "autor1", idx.getAuthorById(1).getName());
+  				assertEqual( {"cozinhar", "escrever"}, idx.getAuthorById(1).getInterests());
+  				
+  				idx.insertAuthor("autor2", {"estudar", "voar"});
+  				assertEqual( "autor2", idx.getAuthorById(2).getName());
+  				assertEqual( {"estudar", "voar"}, idx.getAuthorById(2).getInterests());
+  				
+  				idx.addInterestsToAuthor(2, {"futebol", "praia"});
+  				idx.addInterestsToAuthor(2, {"golf"});
+  				assertEqual( {"estudar", "voar", "futebol","praia", "golf"}, idx.getAuthorById(2).getInterests());
+  				
+  				idx.removeInterestsFromAuthor(2, {"voar"});
+  				assertEqual( {"estudar", "futebol","praia", "golf"}, idx.getAuthorById(2).getInterests());
+  				idx.removeInterestsFromAuthor(2, {"futebol","praia", "golf"});
+  				assertEqual( {"estudar"}, idx.getAuthorById(2).getInterests());
+  				);
+  			
+  			
+  			
+	public testCoautherPath: () ==> ()
+  		testCoautherPath() == 
+  		(dcl idx : Indexer := new Indexer();
+  		
+  			--inserir autores
+  			idx.insertAuthor("autor1", {"cozinhar", "escrever"});
+  			idx.insertAuthor("autor2", {"estudar", "voar"});
+  			idx.insertAuthor("autor3", {"correr", "cantar"});
+  			idx.insertAuthor("autor4", {"estudar", "voar"});
+  			idx.insertAuthor("autor5", {"brincar", "animar"});
+  			idx.insertAuthor("autor6", {"calcular", "cantar"});
+  			
+  			--inserir afiliacoes
+  			idx.insertAffiliation("FEUP");
+  			idx.insertAffiliation("FAC");
+  			
+  			assertEqual(2,card dom idx.getAffiliations());
+  			
+  			--inserir publicacoes
+  			idx.insertPublication("A Specifier's Introduction to Formal Methods", 1990, 0901, "11.111.11/ISBN", 100, 1, {2,3}, 1,{});
+  			idx.insertPublication("A Specifier's Introduction to Informal Methods", 1991, 0902, "11.111.12/ISBN", 10, 1, {3,4}, 2,{1});
+  			idx.insertPublication("A Specifier's Introduction to Informal Math", 1993, 0903, "11.111.13/ISBN", 13, 1, {5,6,2}, 2, {1,2});
+  			
+  			
+  			assertEqual(3,card dom idx.getPublications());
+  			assertEqual(3,card idx.getPublicationsByAuthor(1));
+  			assertEqual(7,len idx.getCoauthorPath(1));
+  	);
+  	
+  	
+  		public testCountSelfCitations: () ==> ()
+  		testCountSelfCitations() == 
+  		(dcl idx : Indexer := new Indexer();
+  		
+  		--inserir autores
+  			idx.insertAuthor("autor1", {"cozinhar", "escrever"});
+  			
+  			--inserir afiliacoes
+  			idx.insertAffiliation("FEUP");
+  			idx.insertAffiliation("FAC");
+  			
+  			--inserir publicacoes
+  			idx.insertPublication("A Specifier's Introduction to Formal Methods", 1990, 0901, "11.111.11/ISBN", 100, 1, {}, 1,{});
+  			idx.insertPublication("A Specifier's Introduction to Informal Methods", 1991, 0902, "11.111.12/ISBN", 10, 1, {}, 2,{1});
+  			idx.insertPublication("A Specifier's Introduction to Informal Math", 1993, 0903, "11.111.13/ISBN", 13, 1, {}, 2, {1,2});
+  				
+  			assertEqual(2,card idx.getReferencesFromAuthorPublications(idx.getPublicationsByAuthor(1)));
+  		);
+  		
+  		
+  		public testCountOthersCitations: () ==> ()
+  		testCountOthersCitations() == 
+  		(dcl idx : Indexer := new Indexer();
+  		
+  		--inserir autores
+  			idx.insertAuthor("autor1", {"cozinhar", "escrever"});
+  			idx.insertAuthor("autor2", {"estudar", "voar"});
+  			idx.insertAuthor("autor3", {"correr", "cantar"});
+  			
+  			--inserir afiliacoes
+  			idx.insertAffiliation("FEUP");
+  			idx.insertAffiliation("FAC");
+  			
+  			--inserir publicacoes
+  			idx.insertPublication("A Specifier's Introduction to Formal Methods", 1990, 0901, "11.111.11/ISBN", 100, 1, {}, 1,{});
+  			idx.insertPublication("A Specifier's Introduction to Informal Methods", 1991, 0902, "11.111.12/ISBN", 10, 2, {}, 2,{1});
+  			idx.insertPublication("A Specifier's Introduction to Informal Math", 1993, 0903, "11.111.13/ISBN", 13, 3, {}, 2, {1,2});
+  			
+  			assertEqual(1, idx.getTimesCited(2));
+  			assertEqual(2, idx.getTimesCited(1));
+  		);
+  		
+  		
+  		
+  		public testNumberErdosAuthor: () ==> ()
+  		testNumberErdosAuthor() == 
+  		(dcl idx : Indexer := new Indexer();
+  		
+  			--inserir autores
+  			idx.insertAuthor("autor1", {"cozinhar", "escrever"});
+  			idx.insertAuthor("autor2", {"estudar", "voar"});
+  			idx.insertAuthor("autor3", {"correr", "cantar"});
+  			
+  			idx.getAuthors()(1).setErdos(1);
+  			assertEqual(1,idx.getAuthors()(1).getErdos());
+  			
+  			idx.getAuthors()(2).setErdos(100);
+  			idx.getAuthors()(3).setErdos(3000);
+  			
+  			  			--inserir afiliacoes
+  			idx.insertAffiliation("FEUP");
+  			
+  			idx.insertPublication("A Specifier's Introduction to Formal Methods", 1990, 0901, "11.111.11/ISBN", 100, 1, {2,3}, 1,{});
+  			
+  			
+  				assertEqual(2,idx.getAuthors()(2).getErdos());
+  		  	assertEqual(2,idx.getAuthors()(3).getErdos());
+  		);
+  		
+		
+
+public testAll: () ==> ()
+  testAll() == (
+   testAffiliation();
+   testAffiliationChangeName();
+   testAuthor();
+   testAuthorChangeName();
+   testAddInterestsAuthor();
+   testRemoveInterestsAuthor();
+   testFieldOfStudy();
+   testPublication();
+   testRaiseRankBy();
+   testDecreaseRankBy();
+   testPublicationAuthorAffiliation();
+   testPublicationAuthorAffiliationChangeName();
+   testPublicationKeyword();
+   testPublicationKeyword();
+   testPublicationReferences();
+   testPublicationReferencesAddReference();
+   testPublicationReferencesRemoveReference();
+   testPublicationURL();
+   testIndexerEmpty();
+   testIndexerAuthors();
+   testCoautherPath();
+   testCountSelfCitations();
+   testCountOthersCitations();
+   testNumberErdosAuthor();  
+  );
+  
+end TestIndexer

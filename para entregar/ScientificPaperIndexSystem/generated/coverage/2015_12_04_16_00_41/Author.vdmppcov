@@ -1,0 +1,56 @@
+class Author
+types
+public AuthorName = seq of char;
+public AuthorID= nat;
+public Interest= seq of char;
+
+
+values
+-- TODO Define values here
+instance variables
+	private name: AuthorName := [];
+	private interests: set of Interest:= {};
+
+
+
+operations
+	public Author : AuthorName *
+									 set of Interest ==> Author
+		Author(an, ints) ==
+		(
+		name := an;
+		interests := ints;
+		return self;
+		
+		);
+	
+	public changeName: AuthorName ==> ()
+	changeName(an) ==
+	name :=  an;
+	
+	public addInterest: Interest ==> ()
+		addInterest(intr) ==
+		interests:= interests union {intr}
+		post card interests >= card interests~;
+		
+	public addInterests: set of Interest ==> Author
+		addInterests(intr) ==
+		(interests:= interests union intr;
+		return self;)
+		post card interests >= card interests~;
+	
+	
+		
+	pure public getName: () ==> AuthorName
+		getName() == return name;
+		
+	pure public getInterests: () ==> set of Interest
+		getInterests() == return interests;
+
+
+
+functions
+-- TODO Define functiones here
+traces
+-- TODO Define Combinatorial Test Traces here
+end Author

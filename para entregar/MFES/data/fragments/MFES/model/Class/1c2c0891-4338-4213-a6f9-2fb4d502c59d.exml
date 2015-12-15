@@ -1,0 +1,40 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="AuthorID" version="3">
+  <DEPS>
+    <ID name="AuthorID" mc="Class" uid="1c2c0891-4338-4213-a6f9-2fb4d502c59d"/>
+    <EXTID name="nat" mc="DataType" uid="f91d8353-1174-4d3c-9df6-ba7ca60d88da"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="AuthorID" mc="Class" uid="1c2c0891-4338-4213-a6f9-2fb4d502c59d"/>
+    <PID name="Author" mc="Class" uid="ae1b8846-fe1b-4932-8a30-b597120f1db7"/>
+    <ATTRIBUTES>
+      <ATT name="IsActive">false</ATT>
+      <ATT name="IsMain">false</ATT>
+      <ATT name="IsElementary">false</ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[AuthorID]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="Parent">
+        <OBJECT>
+          <ID name="" mc="Generalization" uid="05a446de-579b-4ca9-9e27-d26fbcc597ea"/>
+          <PID name="AuthorID" mc="Class" uid="1c2c0891-4338-4213-a6f9-2fb4d502c59d"/>
+          <ATTRIBUTES>
+            <ATT name="Discriminator"></ATT>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="SuperType">
+              <ID name="nat" mc="DataType" uid="f91d8353-1174-4d3c-9df6-ba7ca60d88da"/>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

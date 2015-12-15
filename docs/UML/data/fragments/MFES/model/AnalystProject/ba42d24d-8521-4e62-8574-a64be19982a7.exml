@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="MFES" version="3">
+  <DEPS>
+    <ID name="MFES" mc="AnalystProject" uid="ba42d24d-8521-4e62-8574-a64be19982a7"/>
+    <COMPID name="MFES" mc="PropertyContainer" uid="4d7881d4-fd12-4c33-8051-6977598404d8"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="MFES" mc="AnalystProject" uid="ba42d24d-8521-4e62-8574-a64be19982a7"/>
+    <ATTRIBUTES>
+      <ATT name="Name"><![CDATA[MFES]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="PropertyRoot">
+        <COMPID name="MFES" mc="PropertyContainer" uid="4d7881d4-fd12-4c33-8051-6977598404d8"/>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

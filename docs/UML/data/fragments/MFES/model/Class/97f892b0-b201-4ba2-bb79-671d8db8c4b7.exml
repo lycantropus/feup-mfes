@@ -1,0 +1,59 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="Set&lt;Author::AuthorID&gt;" version="3">
+  <DEPS>
+    <ID name="Set&lt;Author::AuthorID&gt;" mc="Class" uid="97f892b0-b201-4ba2-bb79-671d8db8c4b7"/>
+    <EXTID name="AuthorID" mc="Class" uid="1c2c0891-4338-4213-a6f9-2fb4d502c59d"/>
+    <EXTID name="Set&lt;T&gt;" mc="Class" uid="ec4b8f7e-7995-4c0a-98fb-fbbe9726304c"/>
+  </DEPS>
+  <OBJECT>
+    <ID name="Set&lt;Author::AuthorID&gt;" mc="Class" uid="97f892b0-b201-4ba2-bb79-671d8db8c4b7"/>
+    <PID name="Binding classes" mc="Package" uid="8978fa6d-53d8-4413-83ae-8a5b9a3c2496"/>
+    <ATTRIBUTES>
+      <ATT name="IsActive">false</ATT>
+      <ATT name="IsMain">false</ATT>
+      <ATT name="IsElementary">false</ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[Set<Author::AuthorID>]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="TemplateInstanciation">
+        <OBJECT>
+          <ID name="" mc="TemplateBinding" uid="330bd53b-1041-4862-9bae-5f248049dd00"/>
+          <PID name="Set&lt;Author::AuthorID&gt;" mc="Class" uid="97f892b0-b201-4ba2-bb79-671d8db8c4b7"/>
+          <ATTRIBUTES>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <COMP relation="ParameterSubstitution">
+              <OBJECT>
+                <ID name="" mc="TemplateParameterSubstitution" uid="89f0f1c1-e4b1-458b-8238-feb9e1e1e2e8"/>
+                <PID name="Set&lt;Author::AuthorID&gt;" mc="Class" uid="97f892b0-b201-4ba2-bb79-671d8db8c4b7"/>
+                <ATTRIBUTES>
+                  <ATT name="Value"></ATT>
+                  <ATT name="Name"></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="Actual">
+                    <ID name="AuthorID" mc="Class" uid="1c2c0891-4338-4213-a6f9-2fb4d502c59d"/>
+                  </LINK>
+                  <LINK relation="FormalParameter">
+                    <REFOBJ>
+                      <ID name="" mc="TemplateParameter" uid="90d486ef-c425-40ae-8803-12240bf779c2"/>
+                      <PID name="Set&lt;T&gt;" mc="Class" uid="ec4b8f7e-7995-4c0a-98fb-fbbe9726304c"/>
+                    </REFOBJ>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

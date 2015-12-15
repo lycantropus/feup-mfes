@@ -209,7 +209,27 @@ operations
   			
   			
   			
-
+	public testCoautherPath: () ==> ()
+  		testCoautherPath() == 
+  		(dcl idx : Indexer := new Indexer();
+  			--inserir autores
+  			idx.insertAuthor("autor1", {"cozinhar", "escrever"});
+  			idx.insertAuthor("autor2", {"estudar", "voar"});
+  			idx.insertAuthor("autor3", {"correr", "cantar"});
+  			idx.insertAuthor("autor4", {"estudar", "voar"});
+  			idx.insertAuthor("autor5", {"brincar", "animar"});
+  			idx.insertAuthor("autor6", {"calcular", "cantar"});
+  			
+  			--inserir publicacoes
+  			
+  			idx.insertPublication("A Specifier's Introduction to Formal Methods", 1990, 0901, "11.111.11/ISBN", 100, 1, {2,3}, 1);
+  			idx.insertPublication("A Specifier's Introduction to Informal Methods", 1991, 0902, "11.111.12/ISBN", 10, 1, {5,3}, 2);
+  			
+  			assertEqual(2,card dom idx.getPublications());
+  			
+  			
+  		
+  	);
   				
   		
   		
@@ -238,6 +258,7 @@ public testAll: () ==> ()
    testPublicationURL();
    testIndexerEmpty();
    testIndexerAuthors();
+   testCoautherPath();
    
   );
   

@@ -220,6 +220,12 @@ operations
   			idx.insertAuthor("autor5", {"brincar", "animar"});
   			idx.insertAuthor("autor6", {"calcular", "cantar"});
   			
+  			--inserir afiliacoes
+  			idx.insertAffiliation("FEUP");
+  			idx.insertAffiliation("FAC");
+  			
+  			assertEqual(2,card dom idx.getAffiliations());
+  			
   			--inserir publicacoes
   			
   			idx.insertPublication("A Specifier's Introduction to Formal Methods", 1990, 0901, "11.111.11/ISBN", 100, 1, {2,3}, 1);
